@@ -5,12 +5,26 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 function Signin() {
-  const { signinGoogle } = useAuth();
+  const { signinGoogle, signIn } = useAuth();
+  const { register, handleSubmit } = useForm();
   const handleGoogle = async () => {
     await signinGoogle();
+  };
+  const onSubmit = async (data) => {
+    try {
+      toast.promise(signIn(data.email, data.password), {
+        loading: "Signin...",
+        success: <b>Signin successfull!</b>,
+        error: <b>Could not signin.</b>,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div>
@@ -32,7 +46,10 @@ function Signin() {
                 <Separator />
               </div>
               <Form>
-                <form className="w-full space-y-4">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="w-full space-y-4"
+                >
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
@@ -41,6 +58,7 @@ function Signin() {
                       name="email"
                       placeholder="m@example.com"
                       required
+                      {...register("email")}
                     />
                   </div>
                   <div className="grid gap-2">
@@ -59,6 +77,7 @@ function Signin() {
                       id="password"
                       type="password"
                       required
+                      {...register("password")}
                     />
                   </div>
                   <Button type="submit" className="mt-4 w-full">

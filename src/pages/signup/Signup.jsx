@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 function Signup() {
@@ -17,7 +18,11 @@ function Signup() {
   const onSubmit = async (data) => {
     const { email, name, photo, password } = data || {};
     try {
-      await signUp(email, password);
+      await toast.promise(signUp(email, password), {
+        loading: "Creating account...",
+        success: <b>Signed up successfull!</b>,
+        error: <b>Could not signup.</b>,
+      });
       await updateUserProfile(name, photo);
     } catch (err) {
       console.log(err);

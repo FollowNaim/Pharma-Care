@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 function Slide({ image, title, subtitle }) {
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat px-8 py-24 bg-black/70 bg-blend-overlay"
+      className="bg-cover bg-center object-cover bg-no-repeat px-8 py-28 bg-black/70 bg-blend-overlay"
       style={{ backgroundImage: `url('${image}')` }}
     >
       <div className="flex flex-col items-start gap-4">

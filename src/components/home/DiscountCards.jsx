@@ -2,10 +2,19 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import DiscountCard from "./DiscountCard";
 function DiscountCards() {
   return (
-    <div>
-      <div>
+    <div className="my-20 px-4">
+      <div className="text-center max-w-2xl mx-auto mb-8">
+        <h2 className="text-3xl font-semibold">Grab Your Discount Now!</h2>
+        <p className="text-muted-foreground py-3">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, enim.
+          Magnam, cumque sequi non iusto nihil tempore consectetur natus
+          doloremque sapiente, in ipsum{" "}
+        </p>
+      </div>
+      <div className="container">
         <Swiper
           grabCursor={true}
           slidesPerView={3}
@@ -16,15 +25,33 @@ function DiscountCards() {
           modules={[Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <DiscountCard />
+          </SwiperSlide>
         </Swiper>
       </div>
     </div>

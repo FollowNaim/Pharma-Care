@@ -8,10 +8,11 @@ import slide2 from "@/assets/sliders/slide2.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "./BannerSliders.css";
 import Slide from "./Slide";
 function BannerSliders() {
   return (
-    <div>
+    <div id="bannerslider">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -19,10 +20,6 @@ function BannerSliders() {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >

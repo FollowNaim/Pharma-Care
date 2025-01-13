@@ -5,12 +5,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-function Signin() {
-  const { signinGoogle } = useAuth();
+function Signup() {
+  const { register, handleSubmit } = useForm();
+  const { signinGoogle, signUp, updateUserProfile } = useAuth();
   const handleGoogle = async () => {
     await signinGoogle();
+  };
+  const onSubmit = async (data) => {
+    const { email, name, photo, password } = data || {};
+    try {
+      await signUp(email, password);
+      await updateUserProfile(name, photo);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div>
@@ -20,7 +31,7 @@ function Signin() {
             <div className="max-w-xs m-auto w-full flex flex-col items-center py-10">
               <Logo className="h-9 w-9" />
               <p className="mt-4 text-xl font-bold tracking-tight">
-                Log in to Pharma Care
+                Register to Pharma Care
               </p>
               <Button className="mt-8 w-full gap-3" onClick={handleGoogle}>
                 <GoogleLogo />
@@ -32,7 +43,32 @@ function Signin() {
                 <Separator />
               </div>
               <Form>
-                <form className="w-full space-y-4">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="w-full space-y-4"
+                >
+                  <div className="grid gap-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      name="name"
+                      placeholder="John Doe"
+                      required
+                      {...register("name")}
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="photo">Photo URL</Label>
+                    <Input
+                      id="photo"
+                      type="url"
+                      name="photo"
+                      placeholder="https://example.com/example.png"
+                      required
+                      {...register("photo")}
+                    />
+                  </div>
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
@@ -41,24 +77,18 @@ function Signin() {
                       name="email"
                       placeholder="m@example.com"
                       required
+                      {...register("email")}
                     />
                   </div>
                   <div className="grid gap-2">
-                    <div className="flex items-center">
-                      <Label htmlFor="password">Password</Label>
-                      <Link
-                        href="#"
-                        className="ml-auto inline-block text-sm underline"
-                      >
-                        Forgot your password?
-                      </Link>
-                    </div>
+                    <Label htmlFor="password">Password</Label>
                     <Input
                       placeholder="Password"
                       name="password"
                       id="password"
                       type="password"
                       required
+                      {...register("password")}
                     />
                   </div>
                   <Button type="submit" className="mt-4 w-full">
@@ -68,12 +98,12 @@ function Signin() {
               </Form>
               <div className="mt-5 space-y-5">
                 <p className="text-sm text-center">
-                  Don&apos;t have an account?
+                  Already have an account?
                   <Link
-                    to={"/auth/signup"}
+                    to={"/auth/signin"}
                     className="ml-1 underline text-muted-foreground"
                   >
-                    Create account
+                    Signin
                   </Link>
                 </p>
               </div>
@@ -122,4 +152,4 @@ const GoogleLogo = () => (
   </svg>
 );
 
-export default Signin;
+export default Signup;

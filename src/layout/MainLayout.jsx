@@ -6,7 +6,9 @@ function MainLayout() {
   return (
     <div className="font-lato">
       <Navbar />
-      <Outlet />
+      <div className="min-h-full">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

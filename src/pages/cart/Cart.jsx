@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { IoMdLock } from "react-icons/io";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
@@ -120,7 +121,7 @@ function Cart() {
           </div>
           <div className="flex justify-end mt-4">
             <Button disabled={!carts.length} size="lg">
-              Checkout
+              Checkout <IoMdLock /> ${totalPrice}
             </Button>
           </div>
         </div>

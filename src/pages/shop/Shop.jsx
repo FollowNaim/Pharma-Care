@@ -8,13 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { CircleCheckBig, Eye } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function Shop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useAuth();
   const [currentData, setCurrentData] = useState({});
   const { data: medicines = [] } = useQuery({
     queryKey: ["medicines"],
@@ -23,6 +26,23 @@ function Shop() {
       return data?.data;
     },
   });
+  const handleAddToCart = (medicine) => {
+    const { name, image, price, manufacturer } = medicine;
+    const cartItem = {
+      medicineId: medicine._id,
+      email: user.email,
+      name,
+      image,
+      price,
+      quantity: 1,
+      manufacturer,
+    };
+    toast.promise(axios.post("/carts", cartItem), {
+      loading: "Adding to cart...",
+      success: <b>Added successfull!</b>,
+      error: <b>Could not added.</b>,
+    });
+  };
   return (
     <div className="mb-10">
       <div className="container px-4">
@@ -60,7 +80,11 @@ function Shop() {
                       className="cursor-pointer"
                       size={18}
                     />
-                    <CircleCheckBig className="cursor-pointer" size={18} />
+                    <CircleCheckBig
+                      onClick={() => handleAddToCart(medicine)}
+                      className="cursor-pointer"
+                      size={18}
+                    />
                   </div>
                 </TableCell>
               </TableRow>

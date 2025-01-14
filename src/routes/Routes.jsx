@@ -1,4 +1,5 @@
 import MainLayout from "@/layout/MainLayout";
+import Cart from "@/pages/cart/Cart";
 import Home from "@/pages/home/Home";
 import Signin from "@/pages/login/Signin";
 import Shop from "@/pages/shop/Shop";
@@ -17,6 +18,10 @@ export const routes = createBrowserRouter([
       {
         path: "shop",
         element: <Shop />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "auth/signin",

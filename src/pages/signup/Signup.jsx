@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -13,7 +14,11 @@ function Signup() {
   const { register, handleSubmit } = useForm();
   const { signinGoogle, signUp, updateUserProfile } = useAuth();
   const handleGoogle = async () => {
-    await signinGoogle();
+    const { user } = await signinGoogle();
+    const { displayName, email, photoURL } = user;
+    await axios.post("/user", {
+      user: { name: displayName, email, photoURL },
+    });
   };
   const onSubmit = async (data) => {
     const { email, name, photo, password } = data || {};
@@ -24,6 +29,7 @@ function Signup() {
         error: <b>Could not signup.</b>,
       });
       await updateUserProfile(name, photo);
+      await axios.post("/user", { user: { name, email, photoURL: photo } });
     } catch (err) {
       console.log(err);
     }

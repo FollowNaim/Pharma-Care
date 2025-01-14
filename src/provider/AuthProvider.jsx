@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -33,6 +34,10 @@ function AuthProvider({ children }) {
       photoURL: photo,
     });
   };
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
   useEffect(() => {
     console.log(user);
   }, [user]);
@@ -49,6 +54,7 @@ function AuthProvider({ children }) {
     signIn,
     signUp,
     signinGoogle,
+    logOut,
     updateUserProfile,
   };
   return (

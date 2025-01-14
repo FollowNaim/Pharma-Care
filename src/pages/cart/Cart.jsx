@@ -14,10 +14,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [totalPrice, setTotalPrice] = useState(0);
   const { data: carts = [], refetch } = useQuery({
     queryKey: ["carts", user?.email],
@@ -111,7 +112,12 @@ function Cart() {
           </Table>
           <div className="flex justify-between w-full border-t pt-6">
             <div>
-              <Button onClick={handleClearCart} size="lg" variant="outline">
+              <Button
+                disabled={!carts.length}
+                onClick={handleClearCart}
+                size="lg"
+                variant="outline"
+              >
                 Clear Cart
               </Button>
             </div>
@@ -121,11 +127,13 @@ function Cart() {
             </div>
           </div>
           <div className="flex justify-end mt-4">
-            <Link to={"/cart/checkout"}>
-              <Button disabled={!carts.length} size="lg">
-                Checkout <IoMdLock /> ${totalPrice}
-              </Button>
-            </Link>
+            <Button
+              onClick={() => navigate("/cart/checkout")}
+              disabled={!carts.length}
+              size="lg"
+            >
+              Checkout <IoMdLock /> ${totalPrice}
+            </Button>
           </div>
         </div>
       </div>

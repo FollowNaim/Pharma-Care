@@ -19,7 +19,6 @@ function Checkout() {
       return data;
     },
   });
-  console.log(carts);
   useEffect(() => {
     const price = carts?.reduce(
       (acc, cur) => acc + cur.price * cur.quantity,
@@ -47,7 +46,11 @@ function Checkout() {
         </div>
         <div className="w-full">
           <Elements stripe={stripePromise}>
-            <CheckoutForm totalPrice={totalPrice} />
+            <CheckoutForm
+              refetch={refetch}
+              carts={carts}
+              totalPrice={totalPrice}
+            />
           </Elements>
         </div>
       </div>

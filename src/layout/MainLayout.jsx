@@ -6,14 +6,6 @@ import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 
 function MainLayout() {
-  const { data: medicine = [] } = useQuery({
-    queryKey: ["medicines"],
-    queryFn: () => {
-      const { data } = axios.get("/medicine.json");
-      return data;
-    },
-  });
-  console.log(medicine);
   return (
     <div className="font-lato">
       <Toaster />

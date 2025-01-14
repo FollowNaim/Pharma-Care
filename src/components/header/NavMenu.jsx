@@ -21,7 +21,7 @@ export const NavMenu = (props) => (
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link to={"/cart"}>Cart</Link>
+          <Link to={"/shop/cart"}>Cart</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

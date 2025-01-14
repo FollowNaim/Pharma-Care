@@ -1,5 +1,6 @@
 import MainLayout from "@/layout/MainLayout";
 import Cart from "@/pages/cart/Cart";
+import Checkout from "@/pages/checkout/Checkout";
 import Home from "@/pages/home/Home";
 import Invoice from "@/pages/invoice/Invoice.jsx";
 import Signin from "@/pages/login/Signin";
@@ -20,8 +21,12 @@ export const routes = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "cart",
+        path: "shop/cart",
         element: <Cart />,
+      },
+      {
+        path: "cart/checkout",
+        element: <Checkout />,
       },
       {
         path: "auth/signin",

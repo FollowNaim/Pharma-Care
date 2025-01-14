@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const { user } = useAuth();
@@ -120,9 +121,11 @@ function Cart() {
             </div>
           </div>
           <div className="flex justify-end mt-4">
-            <Button disabled={!carts.length} size="lg">
-              Checkout <IoMdLock /> ${totalPrice}
-            </Button>
+            <Link to={"/cart/checkout"}>
+              <Button disabled={!carts.length} size="lg">
+                Checkout <IoMdLock /> ${totalPrice}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

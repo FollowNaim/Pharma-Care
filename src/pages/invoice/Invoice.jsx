@@ -34,7 +34,7 @@ const InvoicePDF = () => (
         <TH style={styles.tableHeader}>
           <TD style={styles.td}>Description</TD>
           <TD style={styles.td}>Quantity</TD>
-          <TD style={styles.td}>Uni Price</TD>
+          <TD style={styles.td}>Unit Price</TD>
           <TD style={styles.td}>Total</TD>
         </TH>
         <TR>
@@ -54,7 +54,7 @@ const InvoicePDF = () => (
               marginBottom: "8px",
             }}
           >
-            <Text>Total</Text>
+            <Text>Subtotal</Text>
             <Text>$450</Text>
           </View>
         </View>

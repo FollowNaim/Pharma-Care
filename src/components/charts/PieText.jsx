@@ -22,9 +22,9 @@ const colorPalette = [
   "hsl(var(--chart-5))",
 ];
 
-export function PieText({ totalSales, inTotal }) {
+export function PieText({ totalSales = [], inTotal }) {
   const dataWithColors = React.useMemo(() => {
-    return totalSales.map((item, i) => {
+    return totalSales?.map((item, i) => {
       return { ...item, fill: colorPalette[i % colorPalette.length] };
     });
   }, [totalSales]);

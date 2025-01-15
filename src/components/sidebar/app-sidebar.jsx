@@ -6,14 +6,13 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavLink } from "react-router-dom";
-import { NavUser } from "./NavUser";
 import { Separator } from "../ui/separator";
+import { NavUser } from "./NavUser";
 
 const items = [
   {
@@ -24,19 +23,19 @@ const items = [
   },
   {
     title: "Manage Users",
-    url: "/dashboard",
+    url: "/dashboard/manage/users",
     icon: Inbox,
     role: "admin",
   },
   {
     title: "Manage Category",
-    url: "/dashboard",
+    url: "/dashboard/manage/category",
     icon: Calendar,
     role: "admin",
   },
   {
     title: "Payment Management",
-    url: "/dashboard",
+    url: "/dashboard/manage/payments",
     icon: Search,
     role: "admin",
   },
@@ -59,7 +58,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <h2 className="font-bold my-4">Pharma Care</h2>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

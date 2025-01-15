@@ -17,12 +17,13 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
   const elements = useElements();
   useEffect(() => {
     getPaymentIntent();
-  }, [user]);
+  }, [user, carts]);
+  console.log("clientSecret", clientSecret);
   const getPaymentIntent = async () => {
     try {
       if (carts.length) {
         const { data } = await axios.post("/create-payment-intent", {
-          email: user.email,
+          email: user?.email,
         });
         setClientSecret(data.client_secret);
       }
@@ -30,10 +31,11 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
       console.log(err);
     }
   };
+  console.log(carts);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const card = elements.getElement(CardElement);
-    if (!stripe || !elements || !card) return;
+    if (!stripe || !elements || !card || !clientSecret) return;
     const { error } = stripe.createPaymentMethod({
       type: "card",
       card,
@@ -58,14 +60,26 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
           error: <b>Could not payment.</b>,
         }
       );
+      const totalPrice = carts.reduce(
+        (acc, cur) => acc + cur.price * cur.quantity,
+        0
+      );
       const cartsObj = carts.map((cart) => {
-        return { medicineId: cart.medicineId, quantity: cart.quantity };
+        return {
+          medicineId: cart.medicineId,
+          quantity: cart.quantity,
+          seller: {
+            name: cart.seller.name,
+            email: cart.seller.email,
+          },
+        };
       });
       const medicine = {
         transactionId: data.paymentIntent.payment_method,
         email: user.email,
         name: user.displayName,
         medicines: cartsObj,
+        totalPrice: totalPrice,
       };
       await axios.post("/orders", medicine);
       await axios.delete(`/carts/clear/${user.email}`);
@@ -100,7 +114,7 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
         <CardElement className="" options={cardStyle} />
         <div className="flex items-center gap-4">
           <Button
-            disabled={!stripe || !carts.length}
+            disabled={!stripe || !carts.length || !clientSecret}
             className="mt-4"
             size="lg"
             type="submit"

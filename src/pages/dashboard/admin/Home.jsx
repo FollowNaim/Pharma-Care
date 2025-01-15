@@ -22,7 +22,7 @@ function Home() {
           Category-Wise Sales Overview
         </p>
       </div>
-      <div className="grid grid-cols-2 justify-center w-full gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-center w-full gap-8">
         <PieText
           inTotal={stats?.totalSales[0]?.totalSales}
           totalSales={stats?.totalSales[0]?.items}

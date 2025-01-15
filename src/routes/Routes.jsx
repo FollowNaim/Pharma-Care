@@ -2,7 +2,9 @@ import DashboardLayout from "@/layout/DashboardLayout";
 import MainLayout from "@/layout/MainLayout";
 import Cart from "@/pages/cart/Cart";
 import Checkout from "@/pages/checkout/Checkout";
+import Category from "@/pages/dashboard/admin/Category";
 import AdminHome from "@/pages/dashboard/admin/Home";
+import Payments from "@/pages/dashboard/admin/Payments";
 import Users from "@/pages/dashboard/admin/Users";
 import Home from "@/pages/home/Home";
 import Invoice from "@/pages/invoice/Invoice.jsx";
@@ -54,8 +56,16 @@ export const routes = createBrowserRouter([
         element: <AdminHome />,
       },
       {
-        path: "dashboard/users",
+        path: "manage/users",
         element: <Users />,
+      },
+      {
+        path: "manage/category",
+        element: <Category />,
+      },
+      {
+        path: "manage/payments",
+        element: <Payments />,
       },
     ],
   },

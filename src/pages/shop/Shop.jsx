@@ -27,11 +27,14 @@ function Shop() {
     },
   });
   const handleAddToCart = (medicine) => {
-    const { name, image, price, manufacturer } = medicine;
+    const { name, image, price, manufacturer, seller } = medicine;
     const cartItem = {
       medicineId: medicine._id,
-      email: user.email,
-      name,
+      customer: {
+        email: user.email,
+        name,
+      },
+      seller,
       image,
       price,
       quantity: 1,

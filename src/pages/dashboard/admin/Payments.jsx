@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -21,7 +22,7 @@ function Payments() {
     <div>
       <div className="container">
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableCaption>A list of your recent payments.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ID</TableHead>
@@ -29,7 +30,8 @@ function Payments() {
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Transaction Id</TableHead>
-              <TableHead className="text-right">Total Amout</TableHead>
+              <TableHead className="">Total Amount</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -39,8 +41,22 @@ function Payments() {
                 <TableCell>{payment.name}</TableCell>
                 <TableCell>{payment.email}</TableCell>
                 <TableCell>{payment.transactionId}</TableCell>
+                <TableCell className="">${payment.totalPrice}</TableCell>
                 <TableCell className="text-right">
-                  ${payment.totalPrice}
+                  <div className="flex justify-end items-center gap-3">
+                    {payment.status === "requested" ? (
+                      <>
+                        <Button>Accept</Button>
+                        <Button variant="outline">Reject</Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button>
+                          {payment.status === "paid" ? "Accepted" : "Rejected"}
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

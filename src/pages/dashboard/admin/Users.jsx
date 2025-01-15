@@ -41,6 +41,7 @@ function Users() {
                 <TableCell>
                   <Avatar>
                     <AvatarImage
+                      className="object-cover"
                       referrerPolicy="no-referrer"
                       src={user.photoURL}
                     />

@@ -5,6 +5,7 @@ import Checkout from "@/pages/checkout/Checkout";
 import Category from "@/pages/dashboard/admin/Category";
 import AdminHome from "@/pages/dashboard/admin/Home";
 import Payments from "@/pages/dashboard/admin/Payments";
+import SalesReport from "@/pages/dashboard/admin/SalesReport";
 import Users from "@/pages/dashboard/admin/Users";
 import Home from "@/pages/home/Home";
 import Invoice from "@/pages/invoice/Invoice.jsx";
@@ -66,6 +67,10 @@ export const routes = createBrowserRouter([
       {
         path: "manage/payments",
         element: <Payments />,
+      },
+      {
+        path: "sales/report",
+        element: <SalesReport />,
       },
     ],
   },

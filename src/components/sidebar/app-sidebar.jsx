@@ -41,7 +41,7 @@ const items = [
   },
   {
     title: "Sales Report",
-    url: "/dashboard",
+    url: "/dashboard/sales/report",
     icon: Settings,
     role: "admin",
   },

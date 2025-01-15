@@ -1,11 +1,4 @@
-import {
-  Calendar,
-  ChevronUp,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-} from "lucide-react";
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -18,39 +11,46 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+import { NavLink } from "react-router-dom";
 import { NavUser } from "./NavUser";
+import { Separator } from "../ui/separator";
 
 const items = [
   {
-    title: "Home",
-    url: "#",
+    title: "Statics",
+    url: "/dashboard",
     icon: Home,
+    role: "admin",
   },
   {
-    title: "Inbox",
-    url: "#",
+    title: "Manage Users",
+    url: "/dashboard",
     icon: Inbox,
+    role: "admin",
   },
   {
-    title: "Calendar",
-    url: "#",
+    title: "Manage Category",
+    url: "/dashboard",
     icon: Calendar,
+    role: "admin",
   },
   {
-    title: "Search",
-    url: "#",
+    title: "Payment Management",
+    url: "/dashboard",
     icon: Search,
+    role: "admin",
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Sales Report",
+    url: "/dashboard",
     icon: Settings,
+    role: "admin",
+  },
+  {
+    title: "Manage Banner",
+    url: "/dashboard",
+    icon: Settings,
+    role: "admin",
   },
 ];
 
@@ -65,13 +65,24 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <NavLink to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <div>
+                <Separator />
+              </div>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink to={"/"}>
+                    <Home />
+                    <span>{"Home"}</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

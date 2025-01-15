@@ -3,6 +3,7 @@ import MainLayout from "@/layout/MainLayout";
 import Cart from "@/pages/cart/Cart";
 import Checkout from "@/pages/checkout/Checkout";
 import AdminHome from "@/pages/dashboard/admin/Home";
+import Users from "@/pages/dashboard/admin/Users";
 import Home from "@/pages/home/Home";
 import Invoice from "@/pages/invoice/Invoice.jsx";
 import Signin from "@/pages/login/Signin";
@@ -51,6 +52,10 @@ export const routes = createBrowserRouter([
       {
         index: true,
         element: <AdminHome />,
+      },
+      {
+        path: "dashboard/users",
+        element: <Users />,
       },
     ],
   },

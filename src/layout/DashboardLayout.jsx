@@ -4,10 +4,10 @@ import { Outlet } from "react-router-dom";
 
 function DashboardLayout() {
   return (
-    <div className="">
+    <div className="flex">
       <SidebarProvider>
         <AppSidebar />
-        <main className="px-4">
+        <main className="px-4 flex-1">
           <SidebarTrigger />
           <Outlet />
         </main>

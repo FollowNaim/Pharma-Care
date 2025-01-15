@@ -149,3 +149,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+#sidebarmenus a.active {
+  background-color: #dcd9d98f;
+}

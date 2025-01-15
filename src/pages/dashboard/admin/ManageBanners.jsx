@@ -31,7 +31,7 @@ function ManageBanners() {
     <div>
       <div className="container">
         <div className="flex justify-end mb-4">
-          <Button>Add new category</Button>
+          <Button>Add new banner</Button>
         </div>
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>

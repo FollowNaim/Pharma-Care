@@ -1,4 +1,12 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  ChartNoAxesCombined,
+  CreditCard,
+  FileSpreadsheet,
+  Home,
+  LayoutGrid,
+  TicketSlash,
+  UserRoundCog,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -17,38 +25,38 @@ import { NavUser } from "./NavUser";
 const items = [
   {
     title: "Statics",
-    url: "/dashboard",
-    icon: Home,
+    url: "/dashboard/admin",
+    icon: ChartNoAxesCombined,
     role: "admin",
   },
   {
     title: "Manage Users",
     url: "/dashboard/manage/users",
-    icon: Inbox,
+    icon: UserRoundCog,
     role: "admin",
   },
   {
     title: "Manage Category",
     url: "/dashboard/manage/category",
-    icon: Calendar,
+    icon: LayoutGrid,
     role: "admin",
   },
   {
     title: "Payment Management",
     url: "/dashboard/manage/payments",
-    icon: Search,
+    icon: CreditCard,
     role: "admin",
   },
   {
     title: "Sales Report",
     url: "/dashboard/sales/report",
-    icon: Settings,
+    icon: FileSpreadsheet,
     role: "admin",
   },
   {
     title: "Manage Banner",
     url: "/dashboard/manage/banners",
-    icon: Settings,
+    icon: TicketSlash,
     role: "admin",
   },
 ];
@@ -60,11 +68,11 @@ export function AppSidebar() {
         <SidebarGroup>
           <h2 className="font-bold my-4">Pharma Care</h2>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu id="sidebarmenus">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url}>
+                    <NavLink to={item.url} end>
                       <item.icon />
                       <span>{item.title}</span>
                     </NavLink>

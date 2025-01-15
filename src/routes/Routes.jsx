@@ -8,6 +8,7 @@ import ManageBanners from "@/pages/dashboard/admin/ManageBanners";
 import Payments from "@/pages/dashboard/admin/Payments";
 import SalesReport from "@/pages/dashboard/admin/SalesReport";
 import Users from "@/pages/dashboard/admin/Users";
+import DashboardIndex from "@/pages/dashboard/DashboardIndex";
 import Home from "@/pages/home/Home";
 import Invoice from "@/pages/invoice/Invoice.jsx";
 import Signin from "@/pages/login/Signin";
@@ -55,6 +56,10 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <DashboardIndex />,
+      },
+      {
+        path: "admin",
         element: <AdminHome />,
       },
       {

@@ -30,6 +30,12 @@ const items = [
     role: "admin",
   },
   {
+    title: "Seller Statics",
+    url: "/dashboard/seller",
+    icon: ChartNoAxesCombined,
+    role: "seller",
+  },
+  {
     title: "Manage Users",
     url: "/dashboard/manage/users",
     icon: UserRoundCog,

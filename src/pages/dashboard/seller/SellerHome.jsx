@@ -19,7 +19,7 @@ function SellerHome() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="my-6">
-        <h2 className="text-3xl font-bold">Shop Statistics at a Glance</h2>
+        <h2 className="text-3xl font-bold">Seller Statistics at a Glance</h2>
         <p className="text-muted-foreground mt-3">
           Category-Wise Sales Overview
         </p>

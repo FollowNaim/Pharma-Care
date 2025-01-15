@@ -47,7 +47,7 @@ const items = [
   },
   {
     title: "Manage Banner",
-    url: "/dashboard",
+    url: "/dashboard/manage/banners",
     icon: Settings,
     role: "admin",
   },

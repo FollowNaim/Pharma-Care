@@ -15,7 +15,10 @@ function Home() {
             dolorum! Dicta
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div
+          className="grid
+         grid-cols-3 gap-4"
+        >
           {[...Array(6).keys()].map((item) => (
             <Category key={item} />
           ))}

@@ -4,6 +4,7 @@ import Cart from "@/pages/cart/Cart";
 import Checkout from "@/pages/checkout/Checkout";
 import Category from "@/pages/dashboard/admin/Category";
 import AdminHome from "@/pages/dashboard/admin/Home";
+import ManageBanners from "@/pages/dashboard/admin/ManageBanners";
 import Payments from "@/pages/dashboard/admin/Payments";
 import SalesReport from "@/pages/dashboard/admin/SalesReport";
 import Users from "@/pages/dashboard/admin/Users";
@@ -71,6 +72,10 @@ export const routes = createBrowserRouter([
       {
         path: "sales/report",
         element: <SalesReport />,
+      },
+      {
+        path: "manage/banners",
+        element: <ManageBanners />,
       },
     ],
   },

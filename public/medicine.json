@@ -1,38 +1,22 @@
 [
   {
-    "categoryId": "cat_001",
-    "name": "Tablet",
-    "description": "A solid medicine in tablet form for oral use.",
-    "image": "https://www.htworld.co.uk/wp-content/uploads/2024/05/AdobeStock_410157798-1-1024x611.jpeg"
+    "medicineName": "Lab Hand Sanitizer",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint reiciendis dignissimos, voluptate labore providen corporis sequi",
+    "image": "https://i.ibb.co.com/T13p1pv/slide1.jpg",
+    "seller": {
+      "name": "Naim",
+      "email": "follownaim@gmail.com"
+    },
+    "status": "added"
   },
   {
-    "categoryId": "cat_002",
-    "name": "Syrup",
-    "description": "A liquid medicine for oral administration.",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNqxOrFU5quyB5rFGakgRZefEPNNR0gBZhzQ&s"
-  },
-  {
-    "categoryId": "cat_003",
-    "name": "Capsule",
-    "description": "A gelatin or plant-based capsule for various medications.",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYvwr7dppy_w8ZTfKb8dw4cPfSct9ASaAYig&s"
-  },
-  {
-    "categoryId": "cat_004",
-    "name": "Cream",
-    "description": "A topical medicine for external application.",
-    "image": "https://as1.ftcdn.net/jpg/04/43/00/40/1000_F_443004006_3VsXIfRcVdzXRhjKnL2kfvTk4pTOYmR2.jpg"
-  },
-  {
-    "categoryId": "cat_005",
-    "name": "Injection",
-    "description": "A medicine administered via injection for quick effect.",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSChb_o0BdES_YrRzqu-DdFETuBGaW9aoCXN6PbGLDM4UWY_Tg728D7JyMMVCkxWjlchvM&usqp=CAU"
-  },
-  {
-    "categoryId": "cat_006",
-    "name": "Drop",
-    "description": "A medicine in drop form for eyes, ears, or nasal use.",
-    "image": "https://content.jdmagicbox.com/rep/b2b/homeopathic-medicine-drop/homeopathic-medicine-drop-2.jpg?impolicy=queryparam&im=Resize=(360,360),aspect=fit"
+    "medicineName": "Napa Extra Sanitizer",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint reiciendis dignissimos, voluptate labore providen corporis sequi",
+    "image": "https://i.ibb.co.com/Hp00FMr/slide2.png",
+    "seller": {
+      "name": "Naim",
+      "email": "follownaim@gmail.com"
+    },
+    "status": "added"
   }
 ]

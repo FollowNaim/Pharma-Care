@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdLock } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Checkout.css";
 
 function CheckoutForm({ totalPrice, carts, refetch }) {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
@@ -68,6 +69,7 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
       };
       await axios.post("/orders", medicine);
       await axios.delete(`/carts/clear/${user.email}`);
+      navigate(`/invoice/${data.paymentIntent.payment_method}`);
       refetch();
     } catch (err) {
       console.log(err);

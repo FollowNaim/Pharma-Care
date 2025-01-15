@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Table, TD, TH, TR } from "@ag-media/react-pdf-table";
 import {
   Document,
@@ -7,16 +8,24 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useAuth } from "./../../hooks/useAuth";
 import { styles } from "./invoice";
-import { Button } from "@/components/ui/button";
 
-const InvoicePDF = () => (
+const InvoicePDF = ({ invoice = {}, user }) => (
   <Document pageLayout="singlePage">
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
         <View style={styles.spaceY}>
           <Text style={[styles.title, styles.textBold]}>INVOICE</Text>
-          <Text>Invoice -INV-2025-001</Text>
+          <Text>
+            Invoice - INV-2025-
+            {invoice?.transactionId
+              ?.substring(invoice.transactionId.length - 3)
+              .toUpperCase()}
+          </Text>
         </View>
         <View style={[styles.spaceY, styles.textRight]}>
           <Text style={styles.textBold}>Pharmacy Care</Text>
@@ -26,7 +35,7 @@ const InvoicePDF = () => (
       </View>
       <View style={styles.spaceY}>
         <Text style={[styles.textBold, styles.billTo]}>Bill To</Text>
-        <Text>Client Name</Text>
+        <Text>{user?.displayName}</Text>
         <Text>Client Address</Text>
         <Text>City, State ZIP</Text>
       </View>
@@ -37,12 +46,14 @@ const InvoicePDF = () => (
           <TD style={styles.td}>Unit Price</TD>
           <TD style={styles.td}>Total</TD>
         </TH>
-        <TR>
-          <TD style={styles.td}>Data 1</TD>
-          <TD style={styles.td}>Data 1</TD>
-          <TD style={styles.td}>Data 1</TD>
-          <TD style={styles.td}>Data 2</TD>
-        </TR>
+        {invoice?.ordered_items?.map((item, i) => (
+          <TR key={i}>
+            <TD style={styles.td}>{item.name}</TD>
+            <TD style={styles.td}>{item.quantity}</TD>
+            <TD style={styles.td}>{item.unitPrice}</TD>
+            <TD style={styles.td}>{item.totalPrice}</TD>
+          </TR>
+        ))}
       </Table>
       <View style={{ display: "flex", alignItems: "flex-end" }}>
         <View style={{ minWidth: "200px" }}>
@@ -55,7 +66,7 @@ const InvoicePDF = () => (
             }}
           >
             <Text>Subtotal</Text>
-            <Text>$450</Text>
+            <Text>${invoice.totalOrderPrice}</Text>
           </View>
         </View>
       </View>
@@ -64,10 +75,19 @@ const InvoicePDF = () => (
 );
 
 function Invoice() {
+  const { invoiceId } = useParams();
+  const { user } = useAuth();
+  const { data: invoice = {} } = useQuery({
+    queryKey: ["invoice"],
+    queryFn: async () => {
+      const { data } = await axios.get(`/invoice/${invoiceId}`);
+      return data;
+    },
+  });
   return (
     <div className="flex flex-col justify-center items-center w-full h-[500px] max-w-3xl mx-auto my-10">
       <PDFViewer width={"100%"} height={"100%"}>
-        <InvoicePDF />
+        <InvoicePDF user={user} invoice={invoice} />
       </PDFViewer>
       <div className="mt-8">
         <PDFDownloadLink document={<InvoicePDF />} fileName="invoice.pdf">

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/table";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 function Users() {
   const axiosSecure = useAxiosSecure();
@@ -28,7 +29,13 @@ function Users() {
       return data;
     },
   });
-  const handleRoleChange = async (id) => {};
+  const handleRoleChange = async (id, role) => {
+    await toast.promise(axiosSecure.patch(`/users/${id}/${role}`), {
+      loading: "Upadting role...",
+      success: <b>Role updated successfull!</b>,
+      error: <b>Could not update.</b>,
+    });
+  };
   return (
     <div>
       <div className="container">
@@ -41,7 +48,6 @@ function Users() {
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Role</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -63,7 +69,7 @@ function Users() {
                 <TableCell>
                   <Select
                     defaultValue={user.role}
-                    onValueChange={() => handleRoleChange(user._id)}
+                    onValueChange={(val) => handleRoleChange(user._id, val)}
                   >
                     <SelectTrigger className="">
                       <SelectValue placeholder="Select category" />
@@ -77,7 +83,6 @@ function Users() {
                     </SelectContent>
                   </Select>
                 </TableCell>
-                <TableCell className="text-right">$250.00</TableCell>
               </TableRow>
             ))}
           </TableBody>

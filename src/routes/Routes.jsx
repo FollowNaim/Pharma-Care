@@ -9,6 +9,7 @@ import Payments from "@/pages/dashboard/admin/Payments";
 import SalesReport from "@/pages/dashboard/admin/SalesReport";
 import Users from "@/pages/dashboard/admin/Users";
 import DashboardIndex from "@/pages/dashboard/DashboardIndex";
+import Advertisement from "@/pages/dashboard/seller/Advertisement";
 import ManageMedicines from "@/pages/dashboard/seller/ManageMedicines";
 import PaymentHistory from "@/pages/dashboard/seller/PaymentHistory";
 import SellerHome from "@/pages/dashboard/seller/SellerHome";
@@ -76,6 +77,10 @@ export const routes = createBrowserRouter([
       {
         path: "manage/history/payments",
         element: <PaymentHistory />,
+      },
+      {
+        path: "manage/advertisements",
+        element: <Advertisement />,
       },
       {
         path: "manage/users",

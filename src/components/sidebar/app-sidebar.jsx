@@ -23,6 +23,7 @@ import { NavLink } from "react-router-dom";
 import { Separator } from "../ui/separator";
 import { NavUser } from "./NavUser";
 import { MdManageHistory } from "react-icons/md";
+import { RiAdvertisementFill } from "react-icons/ri";
 
 const items = [
   {
@@ -47,6 +48,12 @@ const items = [
     title: "Payments History",
     url: "/dashboard/manage/history/payments",
     icon: MdManageHistory,
+    role: "seller",
+  },
+  {
+    title: "Ask For Advertisement",
+    url: "/dashboard/manage/advertisements",
+    icon: RiAdvertisementFill,
     role: "seller",
   },
   {

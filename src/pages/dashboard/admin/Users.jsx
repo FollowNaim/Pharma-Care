@@ -16,16 +16,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 function Users() {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users");
+      const { data } = await axiosSecure.get(`/users/${user.email}`);
       return data;
     },
   });

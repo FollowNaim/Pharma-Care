@@ -33,7 +33,7 @@ export function PieText({ totalSales = [], inTotal }) {
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>
-          Total Sales Overview {inTotal || "- No sales yet"}
+          Total Sales Overview {!inTotal && "- No sales yet"}
         </CardTitle>
         <CardDescription>A breakdown of all-time sales revenue</CardDescription>
       </CardHeader>

@@ -17,6 +17,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import useRole from "@/hooks/useRole";
 import { GiMedicines } from "react-icons/gi";
@@ -25,6 +26,7 @@ import { RiAdvertisementFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { Separator } from "../ui/separator";
 import { NavUser } from "./NavUser";
+import logoSmall from "@/assets/logo/logo-small.png";
 
 const items = [
   {
@@ -91,17 +93,20 @@ const items = [
 
 export function AppSidebar() {
   const { role } = useRole();
+  const { state } = useSidebar();
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <h2 className="font-bold my-4">Pharma Care</h2>
+          <h2 className="font-bold my-4">
+            {state === "collapsed" ? <img src={logoSmall} /> : "Pharma Care"}
+          </h2>
           <SidebarGroupContent>
             <SidebarMenu id="sidebarmenus">
               {items.map((item) => {
                 return role === item.role ? (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton tooltip={item.title} asChild>
                       <NavLink to={item.url} end>
                         <item.icon />
                         <span>{item.title}</span>
@@ -116,7 +121,7 @@ export function AppSidebar() {
                 <Separator />
               </div>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton tooltip={"Home"} asChild>
                   <NavLink to={"/"}>
                     <Home />
                     <span>{"Home"}</span>

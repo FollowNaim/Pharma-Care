@@ -34,7 +34,6 @@ const chartConfig = {
 };
 
 export function BarMultiple({ totalSales, inTotal }) {
-  console.log(totalSales, inTotal);
   return (
     <Card>
       <CardHeader>

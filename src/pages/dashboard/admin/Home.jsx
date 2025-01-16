@@ -16,7 +16,7 @@ function Home() {
   if (isLoading) return <p>Loading...</p>;
   console.log(stats);
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mb-10 mx-auto">
       <div className="my-6">
         <h2 className="text-3xl font-bold">Shop Statistics at a Glance</h2>
         <p className="text-muted-foreground mt-3">
@@ -37,6 +37,8 @@ function Home() {
         <AreaChartCustom
           inTotal={stats?.unpaidTotal[0]?.totalRevenue}
           totalSales={stats?.unpaidTotal[0]?.items}
+          rejectedTotal={stats?.rejectedTotal[0]?.totalRevenue}
+          rejectedUnpaid={stats?.rejectedUnpaid}
         />
       </div>
     </div>

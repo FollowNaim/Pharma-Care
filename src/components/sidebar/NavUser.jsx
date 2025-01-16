@@ -23,16 +23,18 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
+              tooltip="My Account"
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
@@ -77,24 +79,28 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Home />
-                Go to Home
-              </DropdownMenuItem>
+              <Link to={"/"}>
+                <DropdownMenuItem>
+                  <Home />
+                  Go to Home
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <LayoutDashboard />
-                Dashboard
-              </DropdownMenuItem>
+              <Link to={"/dashboard"}>
+                <DropdownMenuItem>
+                  <LayoutDashboard />
+                  Dashboard
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <UserPen />
                 Update Profile
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logOut()}>
               <LogOut />
               Log out
             </DropdownMenuItem>

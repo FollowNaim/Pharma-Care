@@ -31,13 +31,20 @@ const chartConfig = {
   },
 };
 
-export function AreaChartCustom({ totalSales, inTotal }) {
-  console.log(totalSales);
+export function AreaChartCustom({
+  totalSales,
+  inTotal,
+  rejectedTotal,
+  rejectedUnpaid,
+}) {
   return (
     <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle>Unpaid Sales Overview - (${inTotal || 0})</CardTitle>
+          <CardTitle>
+            Unpaid Sales Overview - (${inTotal || 0}) - Rejected Sales ($
+            {rejectedTotal || 0})
+          </CardTitle>
           <CardDescription>
             A summary of all-time unpaid sales revenue
           </CardDescription>
@@ -48,7 +55,7 @@ export function AreaChartCustom({ totalSales, inTotal }) {
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
         >
-          <AreaChart data={totalSales}>
+          <AreaChart data={rejectedUnpaid}>
             <defs>
               <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -77,7 +84,7 @@ export function AreaChartCustom({ totalSales, inTotal }) {
             </defs>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="category"
+              dataKey="_id"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -85,19 +92,19 @@ export function AreaChartCustom({ totalSales, inTotal }) {
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Area
-              dataKey="totalSales"
+              dataKey="occur"
               type="natural"
               fill="url(#fillDesktop)"
               stroke="var(--color-desktop)"
               stackId="a"
             />
-            {/* <Area
-              dataKey="desktop"
+            <Area
+              dataKey="totalPrice"
               type="natural"
-              fill="url(#fillDesktop)"
-              stroke="var(--color-desktop)"
-              stackId="a"
-            /> */}
+              fill="url(#fillMobile)"
+              stroke="var(--color-Mobile)"
+              stackId="b"
+            />
             <ChartLegend content={<ChartLegendContent />} />
           </AreaChart>
         </ChartContainer>

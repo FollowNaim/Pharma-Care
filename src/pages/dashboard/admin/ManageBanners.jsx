@@ -1,13 +1,5 @@
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Table,
   TableBody,
   TableCaption,
@@ -19,15 +11,38 @@ import {
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 function ManageBanners() {
   const axiosSecure = useAxiosSecure();
-  const { data: banners = [] } = useQuery({
+  const { data: banners = [], refetch } = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/banners");
       return data;
     },
   });
+  const handleBannerAdd = async (id) => {
+    await toast.promise(
+      axiosSecure.patch(`/banners/${id}`, { status: "added" }),
+      {
+        loading: "Updating status...",
+        success: <b>Updated successfull!</b>,
+        error: <b>Could not update.</b>,
+      }
+    );
+    refetch();
+  };
+  const handleBannerRemove = async (id) => {
+    await toast.promise(
+      axiosSecure.patch(`/banners/${id}`, { status: "removed" }),
+      {
+        loading: "Updating status...",
+        success: <b>Updated successfull!</b>,
+        error: <b>Could not update.</b>,
+      }
+    );
+    refetch();
+  };
   return (
     <div>
       <div className="container">
@@ -43,6 +58,7 @@ function ManageBanners() {
               <TableHead>Description</TableHead>
               <TableHead>Seller Name</TableHead>
               <TableHead>Seller Email</TableHead>
+              <TableHead>Banner Status</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -54,22 +70,20 @@ function ManageBanners() {
                 <TableCell>{banner.description.slice(0, 22)}...</TableCell>
                 <TableCell>{banner.seller.name}</TableCell>
                 <TableCell>{banner.seller.email}</TableCell>
+                <TableCell>{banner.status}</TableCell>
                 <TableCell className="text-right flex justify-end">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>
-                      {banner.status === "added" ? (
-                        <Button>Remove Slide</Button>
-                      ) : (
-                        <Button variant="outline">Add Slide</Button>
-                      )}
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="mr-4">
-                      <DropdownMenuLabel>Manage Categories</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>Update Category</DropdownMenuItem>
-                      <DropdownMenuItem>Delete Category</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  {banner.status === "added" ? (
+                    <Button onClick={() => handleBannerRemove(banner._id)}>
+                      Remove Slide
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      onClick={() => handleBannerAdd(banner._id)}
+                    >
+                      Add Slide
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}

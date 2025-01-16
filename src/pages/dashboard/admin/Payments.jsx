@@ -10,15 +10,38 @@ import {
 } from "@/components/ui/table";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 function Payments() {
   const axiosSecure = useAxiosSecure();
-  const { data: payments = [] } = useQuery({
+  const { data: payments = [], refetch } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/payments");
       return data;
     },
   });
+  const handleAccept = async (id) => {
+    await toast.promise(
+      axiosSecure.patch(`/payments/${id}`, { status: "paid" }),
+      {
+        loading: "Updating payment status...",
+        success: <b>Updated status successfull!</b>,
+        error: <b>Could not updated.</b>,
+      }
+    );
+    refetch();
+  };
+  const handleReject = async (id) => {
+    await toast.promise(
+      axiosSecure.patch(`/payments/${id}`, { status: "rejected" }),
+      {
+        loading: "Updating payment status...",
+        success: <b>Updated status successfull!</b>,
+        error: <b>Could not updated.</b>,
+      }
+    );
+    refetch();
+  };
   return (
     <div>
       <div className="container">
@@ -27,7 +50,6 @@ function Payments() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ID</TableHead>
-
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Transaction Id</TableHead>
@@ -47,12 +69,25 @@ function Payments() {
                   <div className="flex justify-end items-center gap-3">
                     {payment.status === "requested" ? (
                       <>
-                        <Button>Accept</Button>
-                        <Button variant="outline">Reject</Button>
+                        <Button onClick={() => handleAccept(payment._id)}>
+                          Accept
+                        </Button>
+                        <Button
+                          onClick={() => handleReject(payment._id)}
+                          variant="outline"
+                        >
+                          Reject
+                        </Button>
                       </>
                     ) : (
                       <>
-                        <Button variant="outline">
+                        <Button
+                          disabled={payment.status === "rejected"}
+                          variant="outline"
+                          className={`${
+                            payment.status === "rejected" ? "bg-red-100" : ""
+                          }`}
+                        >
                           {payment.status === "paid" ? "Accepted" : "Rejected"}
                         </Button>
                       </>

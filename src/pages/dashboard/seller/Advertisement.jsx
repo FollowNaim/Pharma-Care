@@ -1,3 +1,4 @@
+import AddBanners from "@/components/modal/AddBanners";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,11 +13,13 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 function Advertisement() {
   const axiosSecure = useAxiosSecure();
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
-  const { data: advertisements = [] } = useQuery({
+  const { data: advertisements = [], refetch } = useQuery({
     queryKey: ["advertisements"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -25,11 +28,12 @@ function Advertisement() {
       return data;
     },
   });
+
   return (
     <div>
       <div className="container">
         <div className="flex justify-end mb-4">
-          <Button>
+          <Button onClick={() => setIsOpen(!isOpen)}>
             <IoIosAddCircle /> Request for advertise
           </Button>
         </div>
@@ -60,12 +64,13 @@ function Advertisement() {
                 <TableCell>{advertisement.medicineName}</TableCell>
                 <TableCell>{advertisement.seller.email}</TableCell>
                 <TableCell className="text-right flex justify-end">
-                  {advertisement.status === "added" ? "Added" : "Requested"}
+                  {advertisement.status}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+        <AddBanners isOpen={isOpen} setIsOpen={setIsOpen} refetch={refetch} />
       </div>
     </div>
   );

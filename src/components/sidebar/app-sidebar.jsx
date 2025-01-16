@@ -90,7 +90,7 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const role = useRole();
+  const { role } = useRole();
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>

@@ -49,9 +49,9 @@ function ManageMedicines() {
               <TableHead className="">ID</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
+              <TableHead>Generic Name</TableHead>
               <TableHead>Brand</TableHead>
               <TableHead>price</TableHead>
-              <TableHead>Stock</TableHead>
               <TableHead>Category</TableHead>
               <TableHead className="">Dosage</TableHead>
             </TableRow>
@@ -72,9 +72,10 @@ function ManageMedicines() {
                   </Avatar>
                 </TableCell>
                 <TableCell>{medicine?.name}</TableCell>
+                <TableCell>{medicine?.genericName}</TableCell>
                 <TableCell>{medicine?.brand}</TableCell>
                 <TableCell>{medicine?.price}</TableCell>
-                <TableCell>{medicine?.stock}</TableCell>
+
                 <TableCell>{medicine?.category}</TableCell>
                 <TableCell>{medicine?.dosage}</TableCell>
               </TableRow>

@@ -60,7 +60,7 @@ export const routes = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        index: true,
+        path: "/dashboard",
         element: (
           <PrivateRoutes protectedRules={["admin", "seller"]}>
             <DashboardIndex />

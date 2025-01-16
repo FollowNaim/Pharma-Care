@@ -3,6 +3,7 @@ import { useAuth } from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
 function useRole() {
+  const [roleLoading, setRoleLoading] = useState(true);
   const [role, setRole] = useState(null);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -13,13 +14,15 @@ function useRole() {
         setRole(data.role);
       } catch (err) {
         console.log(err);
+      } finally {
+        setRoleLoading(false);
       }
     };
     if (user) {
       fetchRole();
     }
   }, [user]);
-  return role;
+  return { role, roleLoading };
 }
 
 export default useRole;

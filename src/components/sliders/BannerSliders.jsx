@@ -3,14 +3,22 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import slide1 from "@/assets/sliders/slide1.jpeg";
-import slide2 from "@/assets/sliders/slide2.png";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./BannerSliders.css";
 import Slide from "./Slide";
 function BannerSliders() {
+  const { data: banners = [] } = useQuery({
+    queryKey: ["home-banners"],
+    queryFn: async () => {
+      const { data } = await axios.get("/banners");
+      const filtered = data.filter((item) => item.status === "added");
+      return filtered;
+    },
+  });
   return (
     <div id="bannerslider">
       <Swiper
@@ -23,24 +31,15 @@ function BannerSliders() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <Slide
-            image={slide1}
-            title={"Lab Hand Sanitizer"}
-            subtitle={
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint reiciendis dignissimos, voluptate labore providen corporis sequi"
-            }
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            image={slide2}
-            title={"Napa Extra Sanitizer"}
-            subtitle={
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sint reiciendis dignissimos, voluptate labore providen corporis sequi"
-            }
-          />
-        </SwiperSlide>
+        {banners.map((medicine) => (
+          <SwiperSlide key={medicine._id}>
+            <Slide
+              image={medicine.image}
+              title={medicine.medicineName}
+              subtitle={medicine.description}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

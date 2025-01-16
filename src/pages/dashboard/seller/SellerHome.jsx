@@ -10,7 +10,7 @@ function SellerHome() {
   const { data: stats = {}, isLoading } = useQuery({
     queryKey: ["admin stats", { user }],
     queryFn: async () => {
-      const { data } = await axios.get(`/seller-stats/${user.email}`);
+      const { data } = await axios.get(`/seller/stats/${user.email}`);
       return data;
     },
   });

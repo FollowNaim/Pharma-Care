@@ -22,6 +22,7 @@ import { GiMedicines } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import { Separator } from "../ui/separator";
 import { NavUser } from "./NavUser";
+import { MdManageHistory } from "react-icons/md";
 
 const items = [
   {
@@ -40,6 +41,12 @@ const items = [
     title: "Manage Medicines",
     url: "/dashboard/manage/medicines",
     icon: GiMedicines,
+    role: "seller",
+  },
+  {
+    title: "Payments History",
+    url: "/dashboard/manage/history/payments",
+    icon: MdManageHistory,
     role: "seller",
   },
   {

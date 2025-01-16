@@ -18,6 +18,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { GiMedicines } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import { Separator } from "../ui/separator";
 import { NavUser } from "./NavUser";
@@ -33,6 +34,12 @@ const items = [
     title: "Seller Statics",
     url: "/dashboard/seller",
     icon: ChartNoAxesCombined,
+    role: "seller",
+  },
+  {
+    title: "Manage Medicines",
+    url: "/dashboard/manage/medicines",
+    icon: GiMedicines,
     role: "seller",
   },
   {

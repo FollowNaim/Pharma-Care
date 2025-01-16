@@ -6,27 +6,39 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signin() {
   const { signinGoogle, signIn } = useAuth();
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
   const handleGoogle = async () => {
-    const { user } = await signinGoogle();
+    const { user } = await toast.promise(signinGoogle(), {
+      loading: "Signin...",
+      success: <b>Signin successfull!</b>,
+      error: <b>Could not signin.</b>,
+    });
     const { displayName, email, photoURL } = user;
     await axios.post("/user", {
-      user: { name: displayName, email, photoURL },
-    });
+      user: { name: displayName, email, photoURL, role: "user" },
+    }),
+      navigate("/");
   };
   const onSubmit = async (data) => {
     try {
-      toast.promise(signIn(data.email, data.password), {
+      await toast.promise(signIn(data.email, data.password), {
         loading: "Signin...",
         success: <b>Signin successfull!</b>,
         error: <b>Could not signin.</b>,
       });
+      navigate("/");
     } catch (err) {
       console.log(err);
     }

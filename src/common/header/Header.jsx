@@ -37,7 +37,7 @@ const Navbar = () => {
                 </Button>
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger>
-                    <Avatar className="rounded-full">
+                    <Avatar className="rounded-full object-cover">
                       <AvatarImage
                         referrerPolicy="no-referrer"
                         src={user?.photoURL}

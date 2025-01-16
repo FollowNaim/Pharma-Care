@@ -3,25 +3,47 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const { register, handleSubmit } = useForm();
-  const { signinGoogle, signUp, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
+  const [userRole, setUserRole] = useState("user");
+  const { user, signinGoogle, signUp, updateUserProfile } = useAuth();
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
   const handleGoogle = async () => {
     const { user } = await signinGoogle();
     const { displayName, email, photoURL } = user;
-    await axios.post("/user", {
-      user: { name: displayName, email, photoURL },
-    });
+    await toast.promise(
+      axios.post("/user", {
+        user: { name: displayName, email, photoURL },
+      }),
+      {
+        loading: "Signin...",
+        success: <b>Signin successfull!</b>,
+        error: <b>Could not signin.</b>,
+      }
+    );
+    navigate("/");
   };
   const onSubmit = async (data) => {
-    const { email, name, photo, password } = data || {};
+    const { email, name, photo, password, role } = data || {};
     try {
       await toast.promise(signUp(email, password), {
         loading: "Creating account...",
@@ -29,7 +51,10 @@ function Signup() {
         error: <b>Could not signup.</b>,
       });
       await updateUserProfile(name, photo);
-      await axios.post("/user", { user: { name, email, photoURL: photo } });
+      await axios.post("/user", {
+        user: { name, email, photoURL: photo, role: userRole },
+      });
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -76,7 +101,6 @@ function Signup() {
                       type="url"
                       name="photo"
                       placeholder="https://example.com/example.png"
-                      required
                       {...register("photo")}
                     />
                   </div>
@@ -92,15 +116,21 @@ function Signup() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      name="email"
-                      placeholder="m@example.com"
-                      required
-                      {...register("email")}
-                    />
+                    <Label htmlFor="role">Your role</Label>
+                    <Select
+                      defaultValue="user"
+                      onValueChange={(val) => setUserRole(val)}
+                    >
+                      <SelectTrigger className="">
+                        <SelectValue placeholder="Select your role" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="user">User</SelectItem>
+                          <SelectItem value="seller">Seller</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="password">Password</Label>

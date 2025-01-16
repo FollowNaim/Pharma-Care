@@ -61,7 +61,11 @@ export const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardIndex />,
+        element: (
+          <PrivateRoutes protectedRules={["admin", "seller"]}>
+            <DashboardIndex />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "admin",

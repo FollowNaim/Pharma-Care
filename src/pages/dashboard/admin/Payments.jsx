@@ -52,7 +52,7 @@ function Payments() {
                       </>
                     ) : (
                       <>
-                        <Button>
+                        <Button variant="outline">
                           {payment.status === "paid" ? "Accepted" : "Rejected"}
                         </Button>
                       </>

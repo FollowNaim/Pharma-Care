@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { Table, TD, TH, TR } from "@ag-media/react-pdf-table";
 import {
   Document,
@@ -9,7 +10,6 @@ import {
   View,
 } from "@react-pdf/renderer";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useAuth } from "./../../hooks/useAuth";
 import { styles } from "./invoice";
@@ -77,10 +77,11 @@ const InvoicePDF = ({ invoice = {}, user }) => (
 function Invoice() {
   const { invoiceId } = useParams();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const { data: invoice = {} } = useQuery({
     queryKey: ["invoice"],
     queryFn: async () => {
-      const { data } = await axios.get(`/invoice/${invoiceId}`);
+      const { data } = await axiosSecure.get(`/invoice/${invoiceId}`);
       return data;
     },
   });

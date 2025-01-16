@@ -13,7 +13,8 @@ function Modal({ isModalOpen, setIsModalOpen, medicine }) {
     dosage,
     category,
     price,
-    stock,
+    discount,
+    brand,
     description,
     manufacturer,
   } = medicine || {};
@@ -35,7 +36,8 @@ function Modal({ isModalOpen, setIsModalOpen, medicine }) {
               Price: <span className="text-muted-foreground">{price}</span>
             </p>
             <p className="flex items-center gap-2">
-              Stock: <span className="text-muted-foreground">{stock}</span>
+              Discount:{" "}
+              <span className="text-muted-foreground">{discount || 0}%</span>
             </p>
             <p className="flex items-center gap-2">
               Category:{" "}
@@ -45,7 +47,7 @@ function Modal({ isModalOpen, setIsModalOpen, medicine }) {
           <div>
             <p className="flex items-center gap-2">
               Manufacturer:
-              <span className="text-muted-foreground">{manufacturer}</span>
+              <span className="text-muted-foreground">{brand}</span>
             </p>
           </div>
         </DialogContent>

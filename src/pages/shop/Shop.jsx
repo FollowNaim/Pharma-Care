@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { CircleCheckBig, Eye } from "lucide-react";
@@ -18,6 +19,7 @@ import toast from "react-hot-toast";
 function Shop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [currentData, setCurrentData] = useState({});
   const { data: medicines = [] } = useQuery({
     queryKey: ["medicines"],
@@ -40,7 +42,7 @@ function Shop() {
       quantity: 1,
       manufacturer,
     };
-    toast.promise(axios.post("/carts", cartItem), {
+    toast.promise(axiosSecure.post("/carts", cartItem), {
       loading: "Adding to cart...",
       success: <b>Added successfull!</b>,
       error: <b>Could not added.</b>,
@@ -58,7 +60,7 @@ function Shop() {
               <TableHead>Dosage</TableHead>
               <TableHead>Category</TableHead>
               <TableHead>Price</TableHead>
-              <TableHead>Stock</TableHead>
+
               <TableHead>Brand</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
@@ -71,7 +73,6 @@ function Shop() {
                 <TableCell>{medicine.dosage}</TableCell>
                 <TableCell>{medicine.category}</TableCell>
                 <TableCell>{medicine.price}</TableCell>
-                <TableCell>{medicine.stock}</TableCell>
                 <TableCell>{medicine.brand}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-4 items-center">

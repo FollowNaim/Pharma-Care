@@ -1,3 +1,4 @@
+import { AddMedicine } from "@/components/seller/AddMedicine";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,11 +13,17 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 function ManageMedicines() {
+  const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: medicines = [], isLoading } = useQuery({
+  const {
+    data: medicines = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["medicines", user],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/medicines?email=${user.email}`);
@@ -28,7 +35,10 @@ function ManageMedicines() {
     <div>
       <div className="container">
         <div className="flex justify-end mb-4">
-          <Button className="flex items-center gap-2">
+          <Button
+            className="flex items-center gap-2"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             <IoIosAddCircle /> Add Medicine
           </Button>
         </div>
@@ -71,6 +81,7 @@ function ManageMedicines() {
             ))}
           </TableBody>
         </Table>
+        <AddMedicine isOpen={isOpen} setIsOpen={setIsOpen} refetch={refetch} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaShoppingCart } from "react-icons/fa";
@@ -15,6 +15,7 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     getPaymentIntent();
   }, [user, carts]);
@@ -22,7 +23,7 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
   const getPaymentIntent = async () => {
     try {
       if (carts.length) {
-        const { data } = await axios.post("/create-payment-intent", {
+        const { data } = await axiosSecure.post("/create-payment-intent", {
           email: user?.email,
         });
         setClientSecret(data.client_secret);
@@ -81,8 +82,8 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
         medicines: cartsObj,
         totalPrice: totalPrice,
       };
-      await axios.post("/orders", medicine);
-      await axios.delete(`/carts/clear/${user.email}`);
+      await axiosSecure.post("/orders", medicine);
+      await axiosSecure.delete(`/carts/clear/${user.email}`);
       navigate(`/invoice/${data.paymentIntent.payment_method}`);
       refetch();
     } catch (err) {

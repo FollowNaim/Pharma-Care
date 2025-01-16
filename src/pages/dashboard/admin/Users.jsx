@@ -1,5 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Table,
   TableBody,
   TableCaption,
@@ -20,6 +28,7 @@ function Users() {
       return data;
     },
   });
+  const handleRoleChange = async (id) => {};
   return (
     <div>
       <div className="container">
@@ -51,7 +60,23 @@ function Users() {
                 </TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.role || "user"}</TableCell>
+                <TableCell>
+                  <Select
+                    defaultValue={user.role}
+                    onValueChange={() => handleRoleChange(user._id)}
+                  >
+                    <SelectTrigger className="">
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="seller">Seller</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </TableCell>
                 <TableCell className="text-right">$250.00</TableCell>
               </TableRow>
             ))}

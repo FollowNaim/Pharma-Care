@@ -10,8 +10,8 @@ import {
 import { IoMdLock } from "react-icons/io";
 
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -19,11 +19,12 @@ import { useNavigate } from "react-router-dom";
 function Cart() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const [totalPrice, setTotalPrice] = useState(0);
   const { data: carts = [], refetch } = useQuery({
     queryKey: ["carts", user?.email],
     queryFn: async () => {
-      const { data } = await axios.get(`/carts/${user.email}`);
+      const { data } = await axiosSecure.get(`/carts/${user.email}`);
       return data;
     },
   });
@@ -35,15 +36,15 @@ function Cart() {
     setTotalPrice(price);
   }, [carts]);
   const handleIncrement = async (id) => {
-    await axios.patch(`/carts/${id}`);
+    await axiosSecure.patch(`/carts/${id}`);
     refetch();
   };
   const handleDecrement = async (id) => {
-    await axios.patch(`/carts/${id}?decrement=true`);
+    await axiosSecure.patch(`/carts/${id}?decrement=true`);
     refetch();
   };
   const handleClearCart = async () => {
-    await toast.promise(axios.delete(`/carts/clear/${user.email}`), {
+    await toast.promise(axiosSecure.delete(`/carts/clear/${user.email}`), {
       loading: "Clearing the cart ...",
       success: <b>Cleared successfull!</b>,
       error: <b>Could not clear.</b>,

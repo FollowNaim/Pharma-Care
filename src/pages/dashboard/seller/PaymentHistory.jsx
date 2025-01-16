@@ -56,7 +56,7 @@ function PaymentHistory() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {payments[0].orders.map((payment, i) => {
+            {payments[0]?.orders.map((payment, i) => {
               const medicine = payment.medicine;
               return (
                 <TableRow key={i}>

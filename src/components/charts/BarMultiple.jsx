@@ -38,7 +38,9 @@ export function BarMultiple({ totalSales, inTotal }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Paid Sales Overview - Total Paid (${inTotal})</CardTitle>
+        <CardTitle>
+          Paid Sales Overview - Total Paid (${inTotal || 0})
+        </CardTitle>
         <CardDescription>
           A summary of all-time paid sales revenue
         </CardDescription>

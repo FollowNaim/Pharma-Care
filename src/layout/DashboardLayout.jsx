@@ -1,10 +1,12 @@
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 
 function DashboardLayout() {
   return (
     <div className="flex font-lato">
+      <Toaster />
       <SidebarProvider>
         <AppSidebar />
         <main className="px-4 flex-1">

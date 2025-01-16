@@ -1,8 +1,8 @@
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiTwotoneDollar } from "react-icons/ai";
 import { CiWallet } from "react-icons/ci";
@@ -12,10 +12,11 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 function Checkout() {
   const { user } = useAuth();
   const [totalPrice, setTotalPrice] = useState(0);
+  const axiosSecure = useAxiosSecure();
   const { data: carts = [], refetch } = useQuery({
     queryKey: ["carts", user?.email],
     queryFn: async () => {
-      const { data } = await axios.get(`/carts/${user?.email}`);
+      const { data } = await axiosSecure.get(`/carts/${user?.email}`);
       return data;
     },
   });

@@ -1,3 +1,4 @@
+import AddCategories from "@/components/modal/AddCategories";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,12 +19,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
-
 import { useQuery } from "@tanstack/react-query";
-import { Ellipsis } from "lucide-react";
+import { useState } from "react";
+import { MdOutlineMoreHoriz } from "react-icons/md";
 function Category() {
+  const [open, setOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
-  const { data: categories = [] } = useQuery({
+  const { data: categories = [], refetch } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/categories");
@@ -34,7 +36,7 @@ function Category() {
     <div>
       <div className="container">
         <div className="flex justify-end mb-4">
-          <Button>Add new category</Button>
+          <Button onClick={() => setOpen(!open)}>Add new category</Button>
         </div>
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>
@@ -43,7 +45,6 @@ function Category() {
               <TableHead className="w-[100px]">ID</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
-
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -54,6 +55,7 @@ function Category() {
                 <TableCell>
                   <Avatar>
                     <AvatarImage
+                      className="object-cover"
                       referrerPolicy="no-referrer"
                       src={category.image}
                     />
@@ -61,11 +63,10 @@ function Category() {
                   </Avatar>
                 </TableCell>
                 <TableCell>{category.name}</TableCell>
-
                 <TableCell className="text-right flex justify-end">
                   <DropdownMenu>
                     <DropdownMenuTrigger>
-                      <Ellipsis />
+                      <MdOutlineMoreHoriz size={22} />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="mr-4">
                       <DropdownMenuLabel>Manage Categories</DropdownMenuLabel>
@@ -79,6 +80,7 @@ function Category() {
             ))}
           </TableBody>
         </Table>
+        <AddCategories isOpen={open} setIsOpen={setOpen} refetch={refetch} />
       </div>
     </div>
   );

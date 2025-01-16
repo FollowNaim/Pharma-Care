@@ -92,6 +92,17 @@ function Signup() {
                     />
                   </div>
                   <div className="grid gap-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="m@example.com"
+                      required
+                      {...register("email")}
+                    />
+                  </div>
+                  <div className="grid gap-2">
                     <Label htmlFor="password">Password</Label>
                     <Input
                       placeholder="Password"

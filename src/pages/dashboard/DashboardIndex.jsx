@@ -1,12 +1,14 @@
+import useRole from "@/hooks/useRole";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function DashboardIndex() {
-  const isAdmin = true;
   const navigate = useNavigate();
+  const role = useRole();
   useEffect(() => {
-    if (isAdmin) navigate("dashboard/admin");
-  }, [isAdmin]);
+    if (role === "admin") navigate("/dashboard/admin");
+    if (role === "seller") navigate("/dashboard/seller");
+  }, [role]);
   return null;
 }
 

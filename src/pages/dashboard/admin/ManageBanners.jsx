@@ -16,14 +16,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 function ManageBanners() {
+  const axiosSecure = useAxiosSecure();
   const { data: banners = [] } = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
-      const { data } = await axios.get("/banners");
+      const { data } = await axiosSecure.get("/banners");
       return data;
     },
   });

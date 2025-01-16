@@ -10,16 +10,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { IoIosAddCircle } from "react-icons/io";
-import { IoIosAddCircleOutline } from "react-icons/io";
 function ManageMedicines() {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: medicines = [], isLoading } = useQuery({
     queryKey: ["medicines", user],
     queryFn: async () => {
-      const { data } = await axios.get(`/medicines?email=${user.email}`);
+      const { data } = await axiosSecure.get(`/medicines?email=${user.email}`);
       return data;
     },
   });

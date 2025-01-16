@@ -17,15 +17,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Ellipsis } from "lucide-react";
 function Category() {
+  const axiosSecure = useAxiosSecure();
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const { data } = await axios.get("/categories");
+      const { data } = await axiosSecure.get("/categories");
       return data;
     },
   });

@@ -8,14 +8,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 function Users() {
+  const axiosSecure = useAxiosSecure();
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const { data } = await axios.get("/users");
+      const { data } = await axiosSecure.get("/users");
       return data;
     },
   });

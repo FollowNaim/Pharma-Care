@@ -2,15 +2,16 @@ import { AreaChartCustom } from "@/components/charts/AreaChart";
 import { BarMultiple } from "@/components/charts/BarMultiple";
 import { PieText } from "@/components/charts/PieText";
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 function SellerHome() {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const { data: stats = {}, isLoading } = useQuery({
     queryKey: ["admin stats", { user }],
     queryFn: async () => {
-      const { data } = await axios.get(`/seller/stats/${user.email}`);
+      const { data } = await axiosSecure.get(`/seller/stats/${user.email}`);
       return data;
     },
   });

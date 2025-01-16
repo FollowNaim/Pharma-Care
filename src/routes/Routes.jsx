@@ -19,6 +19,7 @@ import Signin from "@/pages/login/Signin";
 import Shop from "@/pages/shop/Shop";
 import Signup from "@/pages/signup/Signup";
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRoutes from "./PrivateRoutes";
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -64,43 +65,83 @@ export const routes = createBrowserRouter([
       },
       {
         path: "admin",
-        element: <AdminHome />,
+        element: (
+          <PrivateRoutes protectedRules={["admin"]}>
+            <AdminHome />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "seller",
-        element: <SellerHome />,
+        element: (
+          <PrivateRoutes protectedRules={["seller"]}>
+            <SellerHome />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/medicines",
-        element: <ManageMedicines />,
+        element: (
+          <PrivateRoutes protectedRules={["seller"]}>
+            <ManageMedicines />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/history/payments",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateRoutes protectedRules={["seller"]}>
+            <PaymentHistory />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/advertisements",
-        element: <Advertisement />,
+        element: (
+          <PrivateRoutes protectedRules={["seller"]}>
+            <Advertisement />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/users",
-        element: <Users />,
+        element: (
+          <PrivateRoutes protectedRules={["admin"]}>
+            <Users />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/category",
-        element: <Category />,
+        element: (
+          <PrivateRoutes protectedRules={["admin"]}>
+            <Category />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/payments",
-        element: <Payments />,
+        element: (
+          <PrivateRoutes protectedRules={["admin"]}>
+            <Payments />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "sales/report",
-        element: <SalesReport />,
+        element: (
+          <PrivateRoutes protectedRules={["admin"]}>
+            <SalesReport />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "manage/banners",
-        element: <ManageBanners />,
+        element: (
+          <PrivateRoutes protectedRules={["admin"]}>
+            <ManageBanners />
+          </PrivateRoutes>
+        ),
       },
     ],
   },

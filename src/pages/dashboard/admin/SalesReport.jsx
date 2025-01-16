@@ -9,18 +9,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useRef } from "react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { FaDownload } from "react-icons/fa6";
 function SalesReport() {
+  const axiosSecure = useAxiosSecure();
   const tableRef = useRef(null);
   const { user } = useAuth();
   const { data: payments = [], isLoading } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
-      const { data } = await axios.get("/sales-report");
+      const { data } = await axiosSecure.get("/sales-report");
       return data;
     },
   });

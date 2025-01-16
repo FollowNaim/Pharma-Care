@@ -18,12 +18,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import useRole from "@/hooks/useRole";
 import { GiMedicines } from "react-icons/gi";
+import { MdManageHistory } from "react-icons/md";
+import { RiAdvertisementFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { Separator } from "../ui/separator";
 import { NavUser } from "./NavUser";
-import { MdManageHistory } from "react-icons/md";
-import { RiAdvertisementFill } from "react-icons/ri";
 
 const items = [
   {
@@ -89,6 +90,7 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const role = useRole();
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
@@ -96,16 +98,20 @@ export function AppSidebar() {
           <h2 className="font-bold my-4">Pharma Care</h2>
           <SidebarGroupContent>
             <SidebarMenu id="sidebarmenus">
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink to={item.url} end>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {items.map((item) => {
+                return role === item.role ? (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <NavLink to={item.url} end>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ) : (
+                  ""
+                );
+              })}
               <div>
                 <Separator />
               </div>
@@ -121,7 +127,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
       <SidebarFooter>
         <NavUser />
       </SidebarFooter>

@@ -9,18 +9,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useAuth } from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useRef } from "react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { FaDownload } from "react-icons/fa6";
 function PaymentHistory() {
   const tableRef = useRef(null);
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const { data: payments = [], isLoading } = useQuery({
     queryKey: ["payments-history"],
     queryFn: async () => {
-      const { data } = await axios.get(`/seller/payments/${user.email}`);
+      const { data } = await axiosSecure.get(`/seller/payments/${user.email}`);
       return data;
     },
   });

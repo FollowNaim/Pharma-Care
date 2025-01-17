@@ -19,6 +19,7 @@ function useAxiosSecure() {
       if (error.status === 401 || error.status === 403) {
         toast.error(error.response.data);
         await logOut();
+        localStorage.removeItem("token");
         navigate("/auth/signin");
       }
       return Promise.reject(error);

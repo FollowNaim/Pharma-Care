@@ -8,6 +8,7 @@ import {
   UserRoundCog,
 } from "lucide-react";
 
+import logoSmall from "@/assets/logo/logo-small.png";
 import {
   Sidebar,
   SidebarContent,
@@ -26,7 +27,6 @@ import { RiAdvertisementFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { Separator } from "../ui/separator";
 import { NavUser } from "./NavUser";
-import logoSmall from "@/assets/logo/logo-small.png";
 
 const items = [
   {
@@ -88,6 +88,12 @@ const items = [
     url: "/dashboard/manage/banners",
     icon: TicketSlash,
     role: "admin",
+  },
+  {
+    title: "Payment History",
+    url: "/dashboard/manage/users/payments",
+    icon: CreditCard,
+    role: "user",
   },
 ];
 

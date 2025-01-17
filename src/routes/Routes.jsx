@@ -13,6 +13,7 @@ import Advertisement from "@/pages/dashboard/seller/Advertisement";
 import ManageMedicines from "@/pages/dashboard/seller/ManageMedicines";
 import PaymentHistory from "@/pages/dashboard/seller/PaymentHistory";
 import SellerHome from "@/pages/dashboard/seller/SellerHome";
+import UsersPayment from "@/pages/dashboard/user/UsersPayment";
 import Home from "@/pages/home/Home";
 import Invoice from "@/pages/invoice/Invoice.jsx";
 import Signin from "@/pages/login/Signin";
@@ -144,6 +145,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoutes protectedRules={["admin"]}>
             <ManageBanners />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "manage/users/payments",
+        element: (
+          <PrivateRoutes protectedRules={["user"]}>
+            <UsersPayment />
           </PrivateRoutes>
         ),
       },

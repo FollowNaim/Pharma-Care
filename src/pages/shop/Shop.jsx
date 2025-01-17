@@ -1,6 +1,7 @@
 import Modal from "@/components/modal/Modal";
 import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Pagination,
   PaginationContent,
@@ -25,10 +26,12 @@ import axios from "axios";
 import { ChevronsUpDown, CircleCheckBig, Eye } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { IoIosSearch } from "react-icons/io";
 
 function Shop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [desc, setDesc] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -41,17 +44,20 @@ function Shop() {
     },
   });
   const { data: medicines = [], isLoading } = useQuery({
-    queryKey: ["medicines", currentPage, desc],
+    queryKey: ["medicines", currentPage, desc, searchText],
     queryFn: async () => {
       const data = await axios.get(
-        `/medicines?page=${currentPage}&size=${size}&desc=${desc}`
+        `/medicines?page=${currentPage}&size=${size}&desc=${desc}&search=${searchText}`
       );
       return data?.data;
     },
   });
   const size = 10;
   const totalMedicines = medicinesCount?.count;
-  const totalPages = totalMedicines && Math.ceil(totalMedicines / size);
+  let totalPages = totalMedicines && Math.ceil(totalMedicines / size);
+  if (searchText) {
+    totalPages = Math.ceil(medicines.length / size);
+  }
   console.log(totalPages, totalMedicines, currentPage);
   const handleAddToCart = (medicine) => {
     const { name, image, price, manufacturer, seller } = medicine;
@@ -76,7 +82,18 @@ function Shop() {
   return (
     <div className="mb-10">
       <div className="container px-4">
-        <div className="my-4 flex justify-end">
+        <div className="my-4 flex justify-between items-center">
+          <div className="relative">
+            {/* <Label htmlFor="role">Language</Label> */}
+            <Input
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              name="search"
+              type="text"
+              placeholder="Search Name..."
+            />
+            <IoIosSearch color="#737373" className="absolute top-3 right-2" />
+          </div>
           <Button onClick={() => setDesc(!desc)} variant="outline">
             <ChevronsUpDown /> Price
           </Button>

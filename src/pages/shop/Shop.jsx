@@ -1,4 +1,6 @@
 import Modal from "@/components/modal/Modal";
+import Spinner from "@/components/spinner/Spinner";
+import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -20,12 +22,13 @@ import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { CircleCheckBig, Eye } from "lucide-react";
+import { ChevronsUpDown, CircleCheckBig, Eye } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 function Shop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [desc, setDesc] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -37,11 +40,11 @@ function Shop() {
       return data?.data;
     },
   });
-  const { data: medicines = [] } = useQuery({
-    queryKey: ["medicines", currentPage],
+  const { data: medicines = [], isLoading } = useQuery({
+    queryKey: ["medicines", currentPage, desc],
     queryFn: async () => {
       const data = await axios.get(
-        `/medicines?page=${currentPage}&size=${size}`
+        `/medicines?page=${currentPage}&size=${size}&desc=${desc}`
       );
       return data?.data;
     },
@@ -73,6 +76,11 @@ function Shop() {
   return (
     <div className="mb-10">
       <div className="container px-4">
+        <div className="my-4 flex justify-end">
+          <Button onClick={() => setDesc(!desc)} variant="outline">
+            <ChevronsUpDown /> Price
+          </Button>
+        </div>
         <Table>
           {/* <TableCaption>A list of all medicines.</TableCaption> */}
           <TableHeader>
@@ -88,33 +96,41 @@ function Shop() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {medicines.map((medicine, i) => (
-              <TableRow key={medicine._id}>
-                <TableCell className="font-medium">{i + 1}</TableCell>
-                <TableCell>{medicine.name}</TableCell>
-                <TableCell>{medicine.dosage}</TableCell>
-                <TableCell>{medicine.category}</TableCell>
-                <TableCell>{medicine.price}</TableCell>
-                <TableCell>{medicine.brand}</TableCell>
-                <TableCell className="text-right">
-                  <div className="flex justify-end gap-4 items-center">
-                    <Eye
-                      onClick={() => {
-                        setIsModalOpen(!isModalOpen);
-                        setCurrentData(medicine);
-                      }}
-                      className="cursor-pointer"
-                      size={18}
-                    />
-                    <CircleCheckBig
-                      onClick={() => handleAddToCart(medicine)}
-                      className="cursor-pointer"
-                      size={18}
-                    />
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+            {isLoading ? (
+              <TableCell colSpan="7">
+                <Spinner />
+              </TableCell>
+            ) : (
+              <>
+                {medicines.map((medicine, i) => (
+                  <TableRow key={medicine._id}>
+                    <TableCell className="font-medium">{i + 1}</TableCell>
+                    <TableCell>{medicine.name}</TableCell>
+                    <TableCell>{medicine.dosage}</TableCell>
+                    <TableCell>{medicine.category}</TableCell>
+                    <TableCell>{medicine.price}</TableCell>
+                    <TableCell>{medicine.brand}</TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex justify-end gap-4 items-center">
+                        <Eye
+                          onClick={() => {
+                            setIsModalOpen(!isModalOpen);
+                            setCurrentData(medicine);
+                          }}
+                          className="cursor-pointer"
+                          size={18}
+                        />
+                        <CircleCheckBig
+                          onClick={() => handleAddToCart(medicine)}
+                          className="cursor-pointer"
+                          size={18}
+                        />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
+            )}
           </TableBody>
           <Modal
             setIsModalOpen={setIsModalOpen}

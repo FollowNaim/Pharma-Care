@@ -1,3 +1,4 @@
+import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -33,15 +34,14 @@ function SalesReport() {
     queryFn: async () => {
       const { data } = await axiosSecure.get(
         `/sales-report?fromDate=${
-          fromDate ? new Date(fromDate).toISOString().split("T")[0] : null
-        }&toDate=${
-          toDate ? new Date(toDate).toISOString().split("T")[0] : null
-        }`
+          fromDate ? new Date(fromDate) : null
+        }&toDate=${toDate ? new Date(toDate) : null}`
       );
       return data;
     },
   });
-  if (isLoading) return <p>Loading...</p>;
+  console.log(toDate);
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">
@@ -60,7 +60,7 @@ function SalesReport() {
                   >
                     <CalendarIcon />
                     {fromDate ? (
-                      new Date(fromDate).toISOString().split("T")[0]
+                      new Date(fromDate).toLocaleDateString("en-CA")
                     ) : (
                       <span>Pick a date</span>
                     )}
@@ -89,7 +89,7 @@ function SalesReport() {
                   >
                     <CalendarIcon />
                     {toDate ? (
-                      new Date(toDate).toISOString().split("T")[0]
+                      new Date(toDate).toDateString()
                     ) : (
                       <span>Pick a date</span>
                     )}
@@ -150,6 +150,7 @@ function SalesReport() {
               </TableRow>
             ))}
             <TableRow>
+              <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>

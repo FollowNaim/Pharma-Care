@@ -1,3 +1,4 @@
+import Spinner from "@/components/spinner/Spinner";
 import { useAuth } from "@/hooks/useAuth";
 import useRole from "@/hooks/useRole";
 import { Navigate } from "react-router-dom";
@@ -5,9 +6,9 @@ import { Navigate } from "react-router-dom";
 function PrivateRoutes({ children, protectedRules }) {
   const { role, roleLoading } = useRole();
   const { user, loading } = useAuth();
-  if (loading) return <p>Loading....</p>;
+  if (loading) return <Spinner />;
   if (!user) return <Navigate to={"/auth/signin"} />;
-  if (roleLoading) return <p>Loading...</p>;
+  if (roleLoading) return <Spinner />;
   if (!protectedRules.includes(role)) return <Navigate to={"/auth/signin"} />;
   return children;
 }

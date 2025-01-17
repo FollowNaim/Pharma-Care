@@ -1,3 +1,4 @@
+import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -13,7 +14,11 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 function Payments() {
   const axiosSecure = useAxiosSecure();
-  const { data: payments = [], refetch } = useQuery({
+  const {
+    data: payments = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/payments");
@@ -42,6 +47,7 @@ function Payments() {
     );
     refetch();
   };
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">

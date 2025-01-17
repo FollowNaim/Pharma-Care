@@ -1,6 +1,7 @@
 import { AreaChartCustom } from "@/components/charts/AreaChart";
 import { BarMultiple } from "@/components/charts/BarMultiple";
 import { PieText } from "@/components/charts/PieText";
+import Spinner from "@/components/spinner/Spinner";
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -15,8 +16,7 @@ function SellerHome() {
       return data;
     },
   });
-  if (isLoading) return <p>Loading...</p>;
-  console.log(stats);
+  if (isLoading) return <Spinner />;
   return (
     <div className="max-w-4xl mx-auto">
       <div className="my-6">

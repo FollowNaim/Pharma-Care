@@ -1,3 +1,4 @@
+import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -25,7 +26,7 @@ function PaymentHistory() {
       return data;
     },
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">

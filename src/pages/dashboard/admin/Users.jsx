@@ -1,3 +1,4 @@
+import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Select,
@@ -24,7 +25,7 @@ import toast from "react-hot-toast";
 function Users() {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/users/${user.email}`);
@@ -38,6 +39,7 @@ function Users() {
       error: <b>Could not update.</b>,
     });
   };
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">

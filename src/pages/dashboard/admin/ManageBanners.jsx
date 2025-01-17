@@ -1,3 +1,4 @@
+import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -14,7 +15,11 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 function ManageBanners() {
   const axiosSecure = useAxiosSecure();
-  const { data: banners = [], refetch } = useQuery({
+  const {
+    data: banners = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/banners");
@@ -43,6 +48,7 @@ function ManageBanners() {
     );
     refetch();
   };
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">

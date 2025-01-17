@@ -1,5 +1,6 @@
 import AddCategories from "@/components/modal/AddCategories";
 import UpdateCategories from "@/components/modal/UpdateCategories";
+import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,7 +30,11 @@ function Category() {
   const [catOpen, setCatOpen] = useState(false);
   const [categoryId, setCategoryId] = useState("");
   const axiosSecure = useAxiosSecure();
-  const { data: categories = [], refetch } = useQuery({
+  const {
+    data: categories = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await axiosSecure.get("/categories");
@@ -61,6 +66,7 @@ function Category() {
     setCategoryId(id);
     setCatOpen(!catOpen);
   };
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">

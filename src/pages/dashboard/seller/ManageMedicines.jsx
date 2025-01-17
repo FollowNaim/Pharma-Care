@@ -1,4 +1,5 @@
 import { AddMedicine } from "@/components/modal/AddMedicine";
+import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +31,7 @@ function ManageMedicines() {
       return data;
     },
   });
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className="container">

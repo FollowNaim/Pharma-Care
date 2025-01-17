@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 
 function DashboardIndex() {
   const navigate = useNavigate();
-  const { role } = useRole();
+  const { role, roleLoading } = useRole();
   const { user, loading } = useAuth();
-  if (loading) return <Spinner />;
+  console.log("inside index");
+  if (loading || roleLoading) return <Spinner />;
   if (!user) return navigate("/auth/signin");
-  if (role === "admin") navigate("/dashboard/admin");
-  if (role === "seller") navigate("/dashboard/seller");
-
+  if (role === "admin") return navigate("/dashboard/admin");
+  if (role === "seller") return navigate("/dashboard/seller");
+  if (role === "user") return navigate("/dashboard/manage/users/payments");
   return null;
 }
 

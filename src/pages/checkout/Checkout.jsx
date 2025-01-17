@@ -12,6 +12,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 function Checkout() {
   const { user } = useAuth();
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
   const axiosSecure = useAxiosSecure();
   const { data: carts = [], refetch } = useQuery({
     queryKey: ["carts", user?.email],
@@ -26,6 +27,8 @@ function Checkout() {
       0
     );
     setTotalPrice(price);
+    const quantity = carts?.reduce((acc, cur) => acc + cur.quantity, 0);
+    setTotalQuantity(quantity);
   }, [carts]);
   return (
     <div>
@@ -51,6 +54,7 @@ function Checkout() {
               refetch={refetch}
               carts={carts}
               totalPrice={totalPrice}
+              totalQuantity={totalQuantity}
             />
           </Elements>
         </div>

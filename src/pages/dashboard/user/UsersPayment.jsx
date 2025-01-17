@@ -46,30 +46,27 @@ function UsersPayment() {
           <TableHeader>
             <TableRow>
               <TableHead className="">ID</TableHead>
-
               <TableHead>Name</TableHead>
               <TableHead>Consumer</TableHead>
-              <TableHead>Sold By</TableHead>
               <TableHead>Transaction Id</TableHead>
-              <TableHead className="">Unit Price</TableHead>
-              <TableHead className="">Quantity</TableHead>
+              <TableHead>Total Quantity</TableHead>
+              <TableHead>Total Price</TableHead>
               <TableHead className="">Status</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {payments[0]?.orders.map((payment, i) => {
-              const medicine = payment.medicine;
+            {payments?.map((payment, i) => {
+              const medicine = payment;
               return (
                 <TableRow key={i}>
                   <TableCell className="font-medium">{i + 1}</TableCell>
-                  <TableCell>{medicine?.consumer?.name}</TableCell>
-                  <TableCell>{medicine?.consumer?.email}</TableCell>
-                  <TableCell>{medicine?.seller?.email}</TableCell>
+                  <TableCell>{medicine?.name}</TableCell>
+                  <TableCell>{medicine?.email}</TableCell>
                   <TableCell>{medicine?.transactionId}</TableCell>
-                  <TableCell>{medicine?.unitPrice}</TableCell>
-                  <TableCell>{medicine?.quantity}</TableCell>
+                  <TableCell>{medicine?.totalQuantity}</TableCell>
+                  <TableCell>{medicine?.totalPrice}</TableCell>
                   <TableCell className="">
-                    {medicine.status === "requested" ? "Pending" : "Paid"}
+                    {medicine?.status === "requested" ? "Pending" : "Paid"}
                   </TableCell>
                 </TableRow>
               );

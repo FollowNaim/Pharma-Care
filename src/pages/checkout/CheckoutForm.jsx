@@ -9,7 +9,7 @@ import { IoMdLock } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import "./Checkout.css";
 
-function CheckoutForm({ totalPrice, carts, refetch }) {
+function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
@@ -19,7 +19,6 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
   useEffect(() => {
     getPaymentIntent();
   }, [user, carts]);
-  console.log("clientSecret", clientSecret);
   const getPaymentIntent = async () => {
     try {
       if (carts.length) {
@@ -60,10 +59,6 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
           error: <b>Could not payment.</b>,
         }
       );
-      const totalPrice = carts.reduce(
-        (acc, cur) => acc + cur.price * cur.quantity,
-        0
-      );
       const cartsObj = carts.map((cart) => {
         return {
           medicineId: cart.medicineId,
@@ -79,7 +74,8 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
         email: user.email,
         name: user.displayName,
         medicines: cartsObj,
-        totalPrice: totalPrice,
+        totalPrice,
+        totalQuantity,
       };
       await axiosSecure.post("/orders", medicine);
       await axiosSecure.delete(`/carts/clear/${user.email}`);

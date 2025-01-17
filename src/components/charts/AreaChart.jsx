@@ -1,5 +1,3 @@
-"use client";
-
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
@@ -37,6 +35,10 @@ export function AreaChartCustom({
   rejectedTotal,
   rejectedUnpaid,
 }) {
+  const filteredData = rejectedUnpaid.filter((item) => {
+    return { x: 0 };
+  });
+  console.log(filteredData);
   return (
     <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
@@ -89,6 +91,7 @@ export function AreaChartCustom({
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
+              tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Area
@@ -103,7 +106,7 @@ export function AreaChartCustom({
               type="natural"
               fill="url(#fillMobile)"
               stroke="var(--color-Mobile)"
-              stackId="b"
+              stackId="btt"
             />
             <ChartLegend content={<ChartLegendContent />} />
           </AreaChart>

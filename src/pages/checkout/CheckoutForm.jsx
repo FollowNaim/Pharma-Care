@@ -32,7 +32,6 @@ function CheckoutForm({ totalPrice, carts, refetch }) {
       console.log(err);
     }
   };
-  console.log(carts);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const card = elements.getElement(CardElement);

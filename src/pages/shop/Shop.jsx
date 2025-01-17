@@ -1,8 +1,16 @@
 import Modal from "@/components/modal/Modal";
 import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -18,16 +26,30 @@ import toast from "react-hot-toast";
 
 function Shop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [currentData, setCurrentData] = useState({});
-  const { data: medicines = [] } = useQuery({
-    queryKey: ["medicines"],
+  const { data: medicinesCount = {} } = useQuery({
+    queryKey: ["medicines-count"],
     queryFn: async () => {
-      const data = await axios.get("/medicines");
+      const data = await axios.get("/medicines-count");
       return data?.data;
     },
   });
+  const { data: medicines = [] } = useQuery({
+    queryKey: ["medicines", currentPage],
+    queryFn: async () => {
+      const data = await axios.get(
+        `/medicines?page=${currentPage}&size=${size}`
+      );
+      return data?.data;
+    },
+  });
+  const size = 10;
+  const totalMedicines = medicinesCount?.count;
+  const totalPages = totalMedicines && Math.ceil(totalMedicines / size);
+  console.log(totalPages, totalMedicines, currentPage);
   const handleAddToCart = (medicine) => {
     const { name, image, price, manufacturer, seller } = medicine;
     const cartItem = {
@@ -52,7 +74,7 @@ function Shop() {
     <div className="mb-10">
       <div className="container px-4">
         <Table>
-          <TableCaption>A list of all medicines.</TableCaption>
+          {/* <TableCaption>A list of all medicines.</TableCaption> */}
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ID</TableHead>
@@ -100,6 +122,51 @@ function Shop() {
             medicine={currentData}
           />
         </Table>
+        <div className="mt-6">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  className={"cursor-pointer"}
+                  onClick={() => {
+                    if (currentPage > 0) {
+                      setCurrentPage(currentPage - 1);
+                    }
+                  }}
+                />
+              </PaginationItem>
+              {[...Array(totalPages).keys()].map((item, i) => (
+                <PaginationItem
+                  className={`${
+                    item === currentPage ? "border rounded-md" : ""
+                  }`}
+                  key={i}
+                >
+                  <PaginationLink
+                    className={"cursor-pointer"}
+                    onClick={() => setCurrentPage(item)}
+                  >
+                    {item + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              {/* <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem> */}
+              <PaginationItem>
+                <PaginationNext
+                  className={"cursor-pointer"}
+                  disabled={currentPage > totalPages}
+                  onClick={() => {
+                    if (currentPage < totalPages - 1) {
+                      setCurrentPage(currentPage + 1);
+                    }
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </div>
   );

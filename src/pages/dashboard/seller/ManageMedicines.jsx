@@ -27,7 +27,9 @@ function ManageMedicines() {
   } = useQuery({
     queryKey: ["medicines", user],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/medicines?email=${user.email}`);
+      const { data } = await axiosSecure.get(
+        `/seller/medicines/email=${user.email}`
+      );
       return data;
     },
   });

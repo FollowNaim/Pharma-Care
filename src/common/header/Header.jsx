@@ -1,4 +1,5 @@
 import { Logo } from "@/assets/logo/logo";
+import UpdateUserProfile from "@/components/modal/UpdateUserProfile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,12 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavigationSheet } from "../../components/header/NavigationSheet";
 import { NavMenu } from "../../components/header/NavMenu";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="">
       <nav className="h-16 bg-background border-b container">
@@ -23,18 +26,11 @@ const Navbar = () => {
           <Logo />
 
           {/* Desktop Menu */}
-          <NavMenu className="hidden md:block" />
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-10">
+            <NavMenu className="hidden md:block" />
             {user && (
               <>
-                <Button
-                  onClick={logOut}
-                  variant=""
-                  className="hidden sm:inline-flex"
-                >
-                  Sign Out
-                </Button>
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger>
                     <Avatar className="rounded-full object-cover">
@@ -52,20 +48,19 @@ const Navbar = () => {
                     <Link to={"/dashboard"}>
                       <DropdownMenuItem>Dashboard</DropdownMenuItem>
                     </Link>
-                    <DropdownMenuItem>Update Profile</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setIsOpen(!isOpen)}>
+                      Update Profile
+                    </DropdownMenuItem>
 
-                    <DropdownMenuItem>Log Out</DropdownMenuItem>
+                    <DropdownMenuItem onClick={logOut}>
+                      Log Out
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </>
             )}
             {!user && (
               <>
-                <Link to={"/auth/signin"}>
-                  <Button variant="outline" className="hidden sm:inline-flex">
-                    Sign In
-                  </Button>
-                </Link>
                 <Link to={"/auth/signup"}>
                   <Button>Join Us</Button>
                 </Link>
@@ -78,6 +73,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        <UpdateUserProfile isOpen={isOpen} setIsOpen={setIsOpen} />
       </nav>
     </div>
   );

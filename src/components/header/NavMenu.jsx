@@ -4,6 +4,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const NavMenu = (props) => (
@@ -21,7 +22,9 @@ export const NavMenu = (props) => (
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link to={"/shop/cart"}>Cart</Link>
+          <Link to={"/shop/cart"}>
+            <ShoppingCart />
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

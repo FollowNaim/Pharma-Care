@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import { uploadToImgbb } from "@/utils/uploadImage";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -27,6 +28,7 @@ import { Textarea } from "../ui/textarea";
 
 export function AddMedicine({ isOpen, setIsOpen, refetch }) {
   const [category, setCategory] = useState("Tablet");
+  const [imageUrl, setImageUrl] = useState(null);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: categories = [] } = useQuery({
@@ -36,10 +38,20 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
       return data;
     },
   });
+  const handlePhotoChange = async (e) => {
+    const { url } = await toast.promise(uploadToImgbb(e), {
+      loading: "Image Uploading...",
+      success: <b>Image uploaded successfull!</b>,
+      error: <b>Could not upload.</b>,
+    });
+    console.log(url);
+    setImageUrl(url);
+  };
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     const medicine = {
       ...data,
+      image: imageUrl,
       price: parseFloat(data.price),
       discount: parseInt(data.discount),
       category,
@@ -153,11 +165,14 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
                 <Label htmlFor="image">Photo URL</Label>
                 <Input
                   id="image"
-                  type="url"
+                  type="file"
                   name="image"
-                  placeholder="https://example.com/example.png"
                   required
-                  {...register("image")}
+                  {...register("image", {
+                    onChange: (e) => {
+                      handlePhotoChange(e);
+                    },
+                  })}
                 />
               </div>
               <div className="grid gap-2">

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useAuth } from "@/hooks/useAuth";
+import { uploadToImgbb } from "@/utils/uploadImage";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,6 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const { register, handleSubmit } = useForm();
+  const [imageUrl, setImageUrl] = useState(null);
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState("user");
   const { user, signinGoogle, signUp, updateUserProfile } = useAuth();
@@ -42,17 +44,26 @@ function Signup() {
     );
     navigate("/");
   };
+  const handlePhotoChange = async (e) => {
+    const { url } = await toast.promise(uploadToImgbb(e), {
+      loading: "Image Uploading...",
+      success: <b>Image uploaded successfull!</b>,
+      error: <b>Could not upload.</b>,
+    });
+    setImageUrl(url);
+  };
   const onSubmit = async (data) => {
     const { email, name, photo, password, role } = data || {};
+    console.log({ name, email, photoURL: imageUrl, role: userRole });
     try {
       await toast.promise(signUp(email, password), {
         loading: "Creating account...",
         success: <b>Signed up successfull!</b>,
         error: <b>Could not signup.</b>,
       });
-      await updateUserProfile(name, photo);
+      await updateUserProfile(name, imageUrl);
       await axios.post("/user", {
-        user: { name, email, photoURL: photo, role: userRole },
+        user: { name, email, photoURL: imageUrl, role: userRole },
       });
       navigate("/");
     } catch (err) {
@@ -95,16 +106,6 @@ function Signup() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="photo">Photo URL</Label>
-                    <Input
-                      id="photo"
-                      type="url"
-                      name="photo"
-                      placeholder="https://example.com/example.png"
-                      {...register("photo")}
-                    />
-                  </div>
-                  <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
@@ -115,6 +116,20 @@ function Signup() {
                       {...register("email")}
                     />
                   </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="photo">Profile Photo</Label>
+                    <Input
+                      id="photo"
+                      type="file"
+                      name="photo"
+                      {...register("photo", {
+                        onChange: (e) => {
+                          handlePhotoChange(e);
+                        },
+                      })}
+                    />
+                  </div>
+
                   <div className="grid gap-2">
                     <Label htmlFor="role">Your role</Label>
                     <Select

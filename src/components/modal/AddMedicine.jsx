@@ -53,7 +53,7 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
       ...data,
       image: imageUrl,
       price: parseFloat(data.price),
-      discount: parseInt(data.discount),
+      discount: parseInt(data.discount || 0),
       category,
       seller: { name: user.displayName, email: user.email },
     };
@@ -182,7 +182,6 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
                   type="number"
                   name="discount"
                   placeholder="100%"
-                  required
                   {...register("discount")}
                 />
               </div>

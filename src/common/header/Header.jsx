@@ -61,7 +61,7 @@ const Navbar = () => {
             )}
             {!user && (
               <>
-                <Link to={"/auth/signup"}>
+                <Link to={"/auth/signin"}>
                   <Button>Join Us</Button>
                 </Link>
               </>

@@ -95,11 +95,11 @@ function UpdateUserProfile({ isOpen, setIsOpen }) {
                     />
                   )}
                   {!uploadedImage && (
-                    <div className="border-dashed border-2 p-8">
-                      <ImageUp
-                        onClick={() => profileRef.current.click()}
-                        size={28}
-                      />
+                    <div
+                      className="border-dashed border-2 p-8"
+                      onClick={() => profileRef.current.click()}
+                    >
+                      <ImageUp size={28} />
                     </div>
                   )}
                 </div>

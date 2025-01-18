@@ -35,6 +35,10 @@ export const routes = createBrowserRouter([
         element: <Shop />,
       },
       {
+        path: "shop/:category",
+        element: <Shop />,
+      },
+      {
         path: "shop/cart",
         element: <Cart />,
       },

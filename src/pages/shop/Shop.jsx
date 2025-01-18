@@ -27,8 +27,10 @@ import { ChevronsUpDown, CircleCheckBig, Eye } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosSearch } from "react-icons/io";
+import { useParams } from "react-router-dom";
 
 function Shop() {
+  const { category } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [desc, setDesc] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -47,7 +49,9 @@ function Shop() {
     queryKey: ["medicines", currentPage, desc, searchText],
     queryFn: async () => {
       const data = await axios.get(
-        `/medicines?page=${currentPage}&size=${size}&desc=${desc}&search=${searchText}`
+        `/medicines?page=${currentPage}&size=${size}&desc=${desc}&search=${searchText}&category=${
+          category ? category : ""
+        }`
       );
       return data?.data;
     },

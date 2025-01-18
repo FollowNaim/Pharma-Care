@@ -1,8 +1,17 @@
 import Category from "@/components/home/Category";
 import DiscountCards from "@/components/home/DiscountCards";
 import BannerSliders from "@/components/sliders/BannerSliders";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 function Home() {
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const { data } = await axios.get("/public/categories");
+      return data;
+    },
+  });
   return (
     <div>
       <BannerSliders />
@@ -19,8 +28,8 @@ function Home() {
           className="grid
          grid-cols-3 gap-4"
         >
-          {[...Array(6).keys()].map((item) => (
-            <Category key={item} />
+          {categories?.map((item) => (
+            <Category item={item} key={item.category} />
           ))}
         </div>
         <div>

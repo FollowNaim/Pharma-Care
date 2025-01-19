@@ -9,6 +9,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoMdLock } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import "./Checkout.css";
+import Seo from "@/components/seo/Seo";
 
 function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
   const { user } = useAuth();
@@ -125,6 +126,7 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
   };
   return (
     <div className="w-full">
+      <Seo title={"Checkout | Pharma Care"} />
       <form id="stripElements" onSubmit={handleSubmit}>
         <Label>Enter your card details</Label>
         <CardElement className="" options={cardStyle} />

@@ -1,3 +1,4 @@
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -52,6 +53,7 @@ function ManageBanners() {
   if (isLoading) return <Spinner />;
   return (
     <div>
+      <Seo title={"Manage Banners | Pharma Care"} />
       <div className="container">
         <div className="flex justify-end mb-4">
           <Button>Add new banner</Button>

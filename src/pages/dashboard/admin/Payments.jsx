@@ -1,3 +1,4 @@
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import {
@@ -50,6 +51,7 @@ function Payments() {
   if (isLoading) return <Spinner />;
   return (
     <div>
+      <Seo title={"Manage Payments | Pharma Care"} />
       <div className="container">
         <Table>
           <TableCaption>A list of your recent payments.</TableCaption>

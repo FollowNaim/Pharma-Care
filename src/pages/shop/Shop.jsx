@@ -1,4 +1,5 @@
 import Modal from "@/components/modal/Modal";
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,6 +92,7 @@ function Shop() {
   };
   return (
     <div className="mb-10">
+      <Seo title={"Shop | Pharma Care"} />
       <div className="container px-4">
         <div className="my-4 flex justify-between items-center">
           <div className="relative">

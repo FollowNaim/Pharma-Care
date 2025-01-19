@@ -1,3 +1,4 @@
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
@@ -35,6 +36,7 @@ function Checkout() {
   if (isLoading || !carts.length) return <Spinner />;
   return (
     <div>
+      <Seo title={"Checkout | Pharma Care"} />
       <div className="container px-4 max-w-3xl my-10 mx-auto flex flex-col md:flex-row  h-full w-full gap-8 items-center">
         <div
           className="w-full flex-1

@@ -1,3 +1,4 @@
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -42,6 +43,7 @@ function Users() {
   if (isLoading) return <Spinner />;
   return (
     <div>
+      <Seo title={"Manage Users | Pharma Care"} />
       <div className="container">
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>

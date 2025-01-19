@@ -1,6 +1,7 @@
 import { AreaChartCustom } from "@/components/charts/AreaChart";
 import { BarMultiple } from "@/components/charts/BarMultiple";
 import { PieText } from "@/components/charts/PieText";
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
@@ -19,6 +20,7 @@ function SellerHome() {
   if (isLoading) return <Spinner />;
   return (
     <div className="max-w-4xl mx-auto">
+      <Seo title={"Seller Statics | Pharma Care"} />
       <div className="my-6">
         <h2 className="text-3xl font-bold">Seller Statistics at a Glance</h2>
         <p className="text-muted-foreground mt-3">

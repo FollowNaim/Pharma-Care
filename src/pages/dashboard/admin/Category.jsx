@@ -1,5 +1,6 @@
 import AddCategories from "@/components/modal/AddCategories";
 import UpdateCategories from "@/components/modal/UpdateCategories";
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -70,6 +71,7 @@ function Category() {
   if (isLoading) return <Spinner />;
   return (
     <div>
+      <Seo title={"Manage Categories | Pharma Care"} />
       <div className="container">
         <div className="flex justify-end mb-4">
           <Button onClick={() => setOpen(!open)}>

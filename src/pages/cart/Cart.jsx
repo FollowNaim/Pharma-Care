@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Seo from "@/components/seo/Seo";
 
 function Cart() {
   const { user } = useAuth();
@@ -76,6 +77,7 @@ function Cart() {
   };
   return (
     <div className="my-10">
+      <Seo title={"Cart | Pharma Care"} />
       <div className="container px-4">
         <div>
           <h4 className="text-center font-bold text-2xl">

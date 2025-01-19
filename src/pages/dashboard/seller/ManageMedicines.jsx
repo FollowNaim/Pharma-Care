@@ -1,4 +1,5 @@
 import { AddMedicine } from "@/components/modal/AddMedicine";
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ function ManageMedicines() {
   if (isLoading) return <Spinner />;
   return (
     <div>
+      <Seo title={"Manage Medicines | Pharma Care"} />
       <div className="container">
         <div className="flex justify-end mb-4">
           <Button

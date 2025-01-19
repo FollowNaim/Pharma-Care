@@ -3,6 +3,7 @@ import Category from "@/components/home/Category";
 import DiscountCards from "@/components/home/DiscountCards";
 import Features from "@/components/home/Features";
 import TopSold from "@/components/home/TopSold";
+import Seo from "@/components/seo/Seo";
 import BannerSliders from "@/components/sliders/BannerSliders";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -17,6 +18,7 @@ function Home() {
   });
   return (
     <div>
+      <Seo title={"Home | Pharma Care"} />
       <BannerSliders />
       <div className="container my-10">
         <div className="mb-6 text-center">

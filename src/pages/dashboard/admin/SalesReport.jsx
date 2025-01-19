@@ -1,3 +1,4 @@
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -45,6 +46,7 @@ function SalesReport() {
   return (
     <div>
       <div className="container">
+        <Seo title={"Sales Report | Pharma Care"} />
         <div className="flex justify-end mb-4">
           <div className="flex items-center gap-4 mr-4">
             <div className="flex items-center gap-2">

@@ -1,3 +1,4 @@
+import Seo from "@/components/seo/Seo";
 import Spinner from "@/components/spinner/Spinner";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +30,7 @@ function UsersPayment() {
   if (isLoading) return <Spinner />;
   return (
     <div>
+      <Seo title={"Payment History | Pharma Care"} />
       <div className="container">
         <div className="flex justify-end mb-4">
           <DownloadTableExcel

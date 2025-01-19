@@ -1,4 +1,5 @@
-import { Logo } from "@/assets/logo/logo";
+import logo1 from "@/assets/logo/logo.png";
+import Seo from "@/components/seo/Seo";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -19,7 +20,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import logo1 from "@/assets/logo/logo.png";
 
 function Signup() {
   const { register, handleSubmit } = useForm();
@@ -73,6 +73,7 @@ function Signup() {
   };
   return (
     <div>
+      <Seo title={"SignUp | Pharma Care"} />
       <div className="container pl-4">
         <div className="flex items-center justify-center">
           <div className="w-full h-full grid lg:grid-cols-2">

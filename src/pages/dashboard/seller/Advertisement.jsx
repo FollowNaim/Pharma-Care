@@ -1,4 +1,5 @@
 import AddBanners from "@/components/modal/AddBanners";
+import Seo from "@/components/seo/Seo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,6 +32,7 @@ function Advertisement() {
 
   return (
     <div>
+      <Seo title={"Manage Advertisements | Pharma Care"} />
       <div className="container">
         <div className="flex justify-end mb-4">
           <Button onClick={() => setIsOpen(!isOpen)}>

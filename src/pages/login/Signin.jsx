@@ -1,4 +1,5 @@
 import logo1 from "@/assets/logo/logo.png";
+import Seo from "@/components/seo/Seo";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -45,6 +46,7 @@ function Signin() {
   };
   return (
     <div>
+      <Seo title={"SignIn | Pharma Care"} />
       <div className="container pl-4">
         <div className="flex items-center justify-center">
           <div className="w-full h-full grid lg:grid-cols-2">

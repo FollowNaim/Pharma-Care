@@ -41,7 +41,7 @@ export function AreaChartCustom({
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>
-            Total Unpaid Sales - (${inTotal || 0}) And Rejected Sales - ($
+            Total Unpaid Sales - (${inTotal || 0}) and Rejected Sales - ($
             {rejectedTotal || 0})
           </CardTitle>
           <CardDescription>

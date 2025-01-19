@@ -96,7 +96,7 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
       };
       await axiosSecure.post("/orders", medicine);
       await axiosSecure.delete(`/carts/clear/${user.email}`);
-      navigate(`/invoice/${data.paymentIntent.payment_method}`);
+      navigate(`/invoice/${paymentIntent.payment_method}`);
       refetch();
     } catch (err) {
       console.log(err);

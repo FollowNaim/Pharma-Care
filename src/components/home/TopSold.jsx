@@ -2,14 +2,17 @@ import img1 from "@/assets/top-sold/b-01.jpg";
 import img2 from "@/assets/top-sold/b-02.jpg";
 import img3 from "@/assets/top-sold/b-03.jpg";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 function TopSold() {
   return (
     <div className="mt-20 mb-10 container px-4  ">
       <div className="max-w-xl mx-auto text-center my-10">
-        <h2 className="text-3xl font-bold">Top Sell Products</h2>
+        <h2 className="text-3xl font-bold">
+          <span className="text-blue-600">Top Sell</span> Products
+        </h2>
         <p className="text-muted-foreground mt-3">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis,
-          non nesciunt. Et incidunt commodi accusantium atque temporibus!
+          Discover customer favorites that everyone loves! Handpicked for their
+          quality and value, these products are tried, trusted, and top-rated.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
@@ -23,14 +26,15 @@ function TopSold() {
               Hair Oil
             </h2>
             <p className="max-w-xl">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore,
-              harum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Quae temporibus sint ab porro debitis veritatis, et nostrum
-              dolorum.
+              Nourish and revitalize your hair with the natural goodness of aloe
+              vera. Infused with essential nutrients to strengthen and hydrate,
+              leaving your hair smooth and healthy.
             </p>
-            <Button size="lg" className="mt-6">
-              Buy Now
-            </Button>
+            <Link to={"/shop"}>
+              <Button size="lg" className="mt-6">
+                Buy Now
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="col-span-12 md:col-span-4 grid grid-cols-1 items-stretch gap-4">

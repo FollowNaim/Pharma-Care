@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 function Slide({ image, title, subtitle }) {
   return (
@@ -7,9 +8,11 @@ function Slide({ image, title, subtitle }) {
           {title}
         </h2>
         <p className="text-black/60 max-w-md">{subtitle}</p>
-        <Button className="mt-4 bg-black text-white" size="lg">
-          Buy Now
-        </Button>
+        <Link to={"/shop"}>
+          <Button className="mt-4 bg-black text-white" size="lg">
+            Buy Now
+          </Button>
+        </Link>
       </div>
       <div className="flex-1 flex justify-end">
         <img

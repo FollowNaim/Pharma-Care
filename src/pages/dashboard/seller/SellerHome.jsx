@@ -39,6 +39,8 @@ function SellerHome() {
         <AreaChartCustom
           inTotal={stats?.unpaidTotal[0]?.totalRevenue}
           totalSales={stats?.unpaidTotal[0]?.items}
+          rejectedTotal={stats?.rejectedUnpaid[1]?.totalPrice}
+          rejectedUnpaid={stats?.rejectedUnpaid}
         />
       </div>
     </div>

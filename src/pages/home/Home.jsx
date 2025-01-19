@@ -20,11 +20,13 @@ function Home() {
       <BannerSliders />
       <div className="container my-10">
         <div className="mb-6 text-center">
-          <h2 className="text-3xl font-bold pb-3">Our Categories</h2>
+          <h2 className="text-3xl font-bold pb-3">
+            Our <span className="text-blue-600">Categories</span>
+          </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati
-            laboriosam natus porro illum quia beatae quam vitae libero sunt
-            dolorum! Dicta
+            Explore a diverse range of categories tailored to meet all your
+            needs. From everyday essentials to specialty items, find exactly
+            what you are looking for with ease!
           </p>
         </div>
         <div

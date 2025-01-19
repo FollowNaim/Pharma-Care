@@ -65,7 +65,7 @@ function Shop() {
     totalPages = Math.ceil(medicines.length / size);
   }
   console.log(totalPages, totalMedicines, currentPage);
-  const handleAddToCart = (medicine) => {
+  const handleAddToCart = async (medicine) => {
     if (!user) return toast.error("You must login before add to cart");
     const { name, image, price, manufacturer, seller, category } = medicine;
     const cartItem = {
@@ -82,11 +82,12 @@ function Shop() {
       quantity: 1,
       manufacturer,
     };
-    toast.promise(axiosSecure.post("/carts", cartItem), {
+    const res = await toast.promise(axiosSecure.post("/carts", cartItem), {
       loading: "Adding to cart...",
       success: <b>Added successfull!</b>,
       error: <b>Could not added.</b>,
     });
+    console.log(res);
   };
   return (
     <div className="mb-10">

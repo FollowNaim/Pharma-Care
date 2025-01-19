@@ -28,7 +28,7 @@ const InvoicePDF = ({ invoice = {}, user }) => (
           </Text>
         </View>
         <View style={[styles.spaceY, styles.textRight]}>
-          <Text style={styles.textBold}>Pharmacy Care</Text>
+          <Text style={styles.textBold}>Pharma Care</Text>
           <Text>123, RK Guho Road</Text>
           <Text>Mymensingh, Bangladesh</Text>
         </View>
@@ -36,8 +36,8 @@ const InvoicePDF = ({ invoice = {}, user }) => (
       <View style={styles.spaceY}>
         <Text style={[styles.textBold, styles.billTo]}>Bill To</Text>
         <Text>{user?.displayName}</Text>
-        <Text>Client Address</Text>
-        <Text>City, State ZIP</Text>
+        <Text>382, Swapno Choya, Sector 10</Text>
+        <Text>Uttara, Dhaka, Bangladesh</Text>
       </View>
       <Table style={styles.table}>
         <TH style={styles.tableHeader}>

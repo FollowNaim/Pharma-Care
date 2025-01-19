@@ -46,7 +46,7 @@ function SalesReport() {
     <div>
       <div className="container">
         <div className="flex justify-end mb-4">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mr-4">
             <div className="flex items-center gap-2">
               <p>From</p>
               <Popover>

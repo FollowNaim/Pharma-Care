@@ -1,4 +1,5 @@
 import Spinner from "@/components/spinner/Spinner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -59,7 +60,8 @@ function ManageBanners() {
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">ID</TableHead>
+              <TableHead className="">ID</TableHead>
+              <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Description</TableHead>
               <TableHead>Seller Name</TableHead>
@@ -72,6 +74,13 @@ function ManageBanners() {
             {banners?.map((banner, i) => (
               <TableRow key={banner._id}>
                 <TableCell className="font-medium">{i + 1}</TableCell>
+
+                <TableCell>
+                  <Avatar>
+                    <AvatarImage src={banner.image} />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </TableCell>
                 <TableCell>{banner.medicineName}</TableCell>
                 <TableCell>{banner.description.slice(0, 22)}...</TableCell>
                 <TableCell>{banner.seller.name}</TableCell>

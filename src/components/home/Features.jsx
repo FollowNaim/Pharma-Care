@@ -6,9 +6,12 @@ function Features() {
     <div className="mb-10 mt-20">
       <div className="container px-4">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-semibold">Why We are Diffrent</h2>
+          <h2 className="text-3xl font-semibold">
+            Why We are <span className="text-blue-600">Diffrent</span>
+          </h2>
           <p className="text-muted-foreground mt-2">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, vel.
+            Discover the unique values that set us apart—excellence, innovation,
+            and a customer-first approach.
           </p>
         </div>
         <div className="border-2 border-border border-dashed rounded-md flex flex-col md:flex-row">

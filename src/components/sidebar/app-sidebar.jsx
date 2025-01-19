@@ -8,7 +8,7 @@ import {
   UserRoundCog,
 } from "lucide-react";
 
-import logoSmall from "@/assets/logo/logo-small.png";
+import logoSmall from "@/assets/logo/logo.png";
 import {
   Sidebar,
   SidebarContent,

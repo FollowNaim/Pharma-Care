@@ -20,11 +20,11 @@ import {
 } from "recharts";
 const chartConfig = {
   desktop: {
-    label: "requested",
+    label: "rejected",
     color: "hsl(var(--chart-1))",
   },
   mobile: {
-    label: "rejected",
+    label: "requested",
     color: "hsl(var(--chart-2))",
   },
 };
@@ -35,7 +35,6 @@ export function AreaChartCustom({
   rejectedTotal,
   rejectedUnpaid,
 }) {
-  console.log(rejectedUnpaid);
   return (
     <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">

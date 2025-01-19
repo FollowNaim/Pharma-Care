@@ -64,6 +64,7 @@ function Shop() {
   }
   console.log(totalPages, totalMedicines, currentPage);
   const handleAddToCart = (medicine) => {
+    if (!user) return toast.error("You must login before add to cart");
     const { name, image, price, manufacturer, seller } = medicine;
     const cartItem = {
       medicineId: medicine._id,

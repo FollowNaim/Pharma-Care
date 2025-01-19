@@ -1,7 +1,7 @@
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import sliderbg from "@/assets/sliders/slide-bg.jpg";
 // Import Swiper styles
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -20,7 +20,7 @@ function BannerSliders() {
     },
   });
   return (
-    <div id="bannerslider">
+    <div id="bannerslider" style={{ backgroundImage: `url('${sliderbg}')` }}>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

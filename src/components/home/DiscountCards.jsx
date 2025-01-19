@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import "swiper/css";
+import "swiper/css/autoplay";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import DiscountCard from "./DiscountCard";
 function DiscountCards() {
@@ -27,12 +28,20 @@ function DiscountCards() {
         <Swiper
           grabCursor={true}
           slidesPerView={3}
+          breakpoints={{
+            720: {
+              slidesPerView: "2",
+            },
+            1080: {
+              slidesPerView: "3",
+            },
+          }}
           spaceBetween={30}
           pagination={{
             clickable: true,
           }}
-          autoplay={true}
-          modules={[Pagination]}
+          autoplay={{ delay: 1000, pauseOnMouseEnter: true }}
+          modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
           {cards.map((item) => (

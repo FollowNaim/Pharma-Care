@@ -40,7 +40,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "shop/cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoutes protectedRules={["admin", "seller", "user"]}>
+            <Cart />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "cart/checkout",

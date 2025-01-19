@@ -1,5 +1,6 @@
 import Category from "@/components/home/Category";
 import DiscountCards from "@/components/home/DiscountCards";
+import Features from "@/components/home/Features";
 import BannerSliders from "@/components/sliders/BannerSliders";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -26,11 +27,14 @@ function Home() {
         </div>
         <div
           className="grid
-         grid-cols-3 gap-4"
+         grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {categories?.map((item) => (
+          {categories.slice(0, 6)?.map((item) => (
             <Category item={item} key={item.category} />
           ))}
+        </div>
+        <div>
+          <Features />
         </div>
         <div>
           <DiscountCards />

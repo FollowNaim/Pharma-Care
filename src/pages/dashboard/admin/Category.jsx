@@ -23,6 +23,7 @@ import {
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { IoMdAddCircle } from "react-icons/io";
 import { MdOutlineMoreHoriz } from "react-icons/md";
 import Swal from "sweetalert2";
 function Category() {
@@ -71,7 +72,10 @@ function Category() {
     <div>
       <div className="container">
         <div className="flex justify-end mb-4">
-          <Button onClick={() => setOpen(!open)}>Add new category</Button>
+          <Button onClick={() => setOpen(!open)}>
+            <IoMdAddCircle />
+            Add new category
+          </Button>
         </div>
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>

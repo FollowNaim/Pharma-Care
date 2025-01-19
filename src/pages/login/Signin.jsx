@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import man from "@/assets/signin/man3.png";
 
 function Signin() {
   const { signinGoogle, signIn } = useAuth();
@@ -111,7 +112,11 @@ function Signin() {
                 </p>
               </div>
             </div>
-            <div className="bg-muted hidden lg:block" />
+            <div className="bg-muted hidden lg:flex justify-end items-center">
+              <div>
+                <img className="w-60 mx-auto " src={man} alt="" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

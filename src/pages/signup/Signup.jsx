@@ -1,4 +1,5 @@
 import logo1 from "@/assets/logo/logo.png";
+import man from "@/assets/signin/man2.png";
 import Seo from "@/components/seo/Seo";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -180,7 +181,11 @@ function Signup() {
                 </p>
               </div>
             </div>
-            <div className="bg-muted hidden lg:block" />
+            <div className="bg-muted hidden lg:flex justify-end items-center">
+              <div>
+                <img className="w-60 mx-auto " src={man} alt="" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

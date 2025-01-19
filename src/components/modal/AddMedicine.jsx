@@ -31,6 +31,7 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
   const [imageUrl, setImageUrl] = useState(null);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const { register, reset, handleSubmit } = useForm();
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -47,7 +48,6 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
     console.log(url);
     setImageUrl(url);
   };
-  const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     const medicine = {
       ...data,
@@ -65,10 +65,12 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
       });
       refetch();
       setIsOpen(false);
+      reset();
     } catch (err) {
       console.log(err);
       setIsOpen(false);
       refetch();
+      reset();
     }
   };
   return (

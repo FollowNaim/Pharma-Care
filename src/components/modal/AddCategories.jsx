@@ -16,7 +16,7 @@ import { Textarea } from "../ui/textarea";
 
 function AddCategories({ isOpen, setIsOpen, refetch }) {
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
     await toast.promise(axiosSecure.post("/categories", data), {
       loading: "Adding category...",
@@ -25,6 +25,7 @@ function AddCategories({ isOpen, setIsOpen, refetch }) {
     });
     setIsOpen(false);
     refetch();
+    reset();
   };
   return (
     <div>

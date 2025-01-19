@@ -8,12 +8,12 @@ import {
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-import toast from "react-hot-toast";
 
 function UpdateCategories({ isOpen, setIsOpen, refetch, categoryId }) {
   const axiosSecure = useAxiosSecure();
@@ -37,6 +37,7 @@ function UpdateCategories({ isOpen, setIsOpen, refetch, categoryId }) {
     });
     setIsOpen(false);
     refetch();
+    reset();
   };
   return (
     <div>

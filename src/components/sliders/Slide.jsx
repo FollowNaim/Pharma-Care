@@ -1,7 +1,7 @@
 import { Button } from "../ui/button";
 function Slide({ image, title, subtitle }) {
   return (
-    <div className="bg-cover bg-center object-cover bg-no-repeat px-8 py-10 bg-blend-overlay flex flex-col-reverse md:flex-row justify-between items-center">
+    <div className="bg-cover bg-center object-cover bg-no-repeat px-4 md:px-8 py-10 bg-blend-overlay flex flex-col-reverse md:flex-row justify-between items-center">
       <div className="flex flex-1 flex-col items-start mt-10 md:mt-0 gap-4">
         <h2 className="text-black text-3xl md:text-4xl lg:text-5xl font-bold">
           {title}

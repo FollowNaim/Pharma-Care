@@ -1,3 +1,4 @@
+import BestDeal from "@/components/home/BestDeal";
 import Category from "@/components/home/Category";
 import DiscountCards from "@/components/home/DiscountCards";
 import Features from "@/components/home/Features";
@@ -16,7 +17,7 @@ function Home() {
   return (
     <div>
       <BannerSliders />
-      <div className="container px-4 my-10">
+      <div className="container my-10">
         <div className="mb-6 text-center">
           <h2 className="text-3xl font-bold pb-3">Our Categories</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
@@ -27,7 +28,7 @@ function Home() {
         </div>
         <div
           className="grid
-         grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+         grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-4 gap-4"
         >
           {categories.slice(0, 6)?.map((item) => (
             <Category item={item} key={item.category} />
@@ -39,6 +40,7 @@ function Home() {
         <div>
           <DiscountCards />
         </div>
+        <BestDeal />
       </div>
     </div>
   );

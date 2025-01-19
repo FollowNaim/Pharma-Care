@@ -23,7 +23,7 @@ import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { ChevronsUpDown, CircleCheckBig, Eye } from "lucide-react";
+import { ArrowDown10, ArrowUp01, CircleCheckBig, Eye } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosSearch } from "react-icons/io";
@@ -102,7 +102,7 @@ function Shop() {
             <IoIosSearch color="#737373" className="absolute top-3 right-2" />
           </div>
           <Button onClick={() => setDesc(!desc)} variant="outline">
-            <ChevronsUpDown /> Price
+            {desc ? <ArrowUp01 /> : <ArrowDown10 />} Price
           </Button>
         </div>
         <Table>

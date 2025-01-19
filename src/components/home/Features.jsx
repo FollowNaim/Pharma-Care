@@ -4,7 +4,7 @@ import secure from "@/assets/features/secure.png";
 function Features() {
   return (
     <div className="mb-10 mt-20">
-      <div className="container">
+      <div className="container px-4">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-semibold">Why We are Diffrent</h2>
           <p className="text-muted-foreground mt-2">

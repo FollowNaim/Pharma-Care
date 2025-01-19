@@ -45,6 +45,7 @@ function Advertisement() {
               <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Added By</TableHead>
+              <TableHead>Description</TableHead>
               <TableHead className="text-right">Status</TableHead>
             </TableRow>
           </TableHeader>
@@ -63,6 +64,9 @@ function Advertisement() {
                 </TableCell>
                 <TableCell>{advertisement.medicineName}</TableCell>
                 <TableCell>{advertisement.seller.email}</TableCell>
+                <TableCell>
+                  {advertisement.description.slice(0, 40)}...
+                </TableCell>
                 <TableCell className="text-right flex justify-end">
                   {advertisement.status}
                 </TableCell>

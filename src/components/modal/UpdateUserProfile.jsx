@@ -69,8 +69,8 @@ function UpdateUserProfile({ isOpen, setIsOpen }) {
           <DialogHeader>
             <DialogTitle>Update Your Profile</DialogTitle>
             <DialogDescription>
-              Enter details to create a new category. You can always edit or
-              delete it later.
+              Enter details to update your profile. You can always edit it
+              later.
             </DialogDescription>
           </DialogHeader>
           <Form>

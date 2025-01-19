@@ -40,8 +40,7 @@ function AddBanners({ isOpen, setIsOpen, refetch }) {
           <DialogHeader>
             <DialogTitle>Add New Banner AD</DialogTitle>
             <DialogDescription>
-              Enter details to create a new category. You can always edit or
-              delete it later.
+              Enter details to request a new Banner AD.
             </DialogDescription>
           </DialogHeader>
           <Form>

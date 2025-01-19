@@ -1,4 +1,4 @@
-import { Logo } from "@/assets/logo/logo";
+import logo1 from "@/assets/logo/logo.png";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -49,7 +49,10 @@ function Signin() {
         <div className="flex items-center justify-center">
           <div className="w-full h-full grid lg:grid-cols-2">
             <div className="max-w-xs m-auto w-full flex flex-col items-center py-10">
-              <Logo className="h-9 w-9" />
+              <h2 className="flex items-center gap-2">
+                <img className="size-8" src={logo1} alt="" />{" "}
+                <p className="font-bold text-xl">Pharma Care</p>
+              </h2>
               <p className="mt-4 text-xl font-bold tracking-tight">
                 Log in to Pharma Care
               </p>

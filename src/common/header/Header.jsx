@@ -1,6 +1,6 @@
-import { Logo } from "@/assets/logo/logo";
 import UpdateUserProfile from "@/components/modal/UpdateUserProfile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import logo1 from "@/assets/logo/logo.png";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,6 +15,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavigationSheet } from "../../components/header/NavigationSheet";
 import { NavMenu } from "../../components/header/NavMenu";
+import Switcher from "@/components/language/Switcher";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -23,7 +24,12 @@ const Navbar = () => {
     <div className="">
       <nav className="h-16 bg-background border-b container">
         <div className="h-full flex items-center justify-between px-4">
-          <Logo />
+          <Link to={"/"}>
+            <h2 className="flex items-center gap-2">
+              <img className="size-8" src={logo1} alt="" />{" "}
+              <p className="font-bold text-xl">Pharma Care</p>
+            </h2>
+          </Link>
 
           {/* Desktop Menu */}
 
@@ -59,6 +65,7 @@ const Navbar = () => {
                 </DropdownMenu>
               </>
             )}
+
             {!user && (
               <>
                 <Link to={"/auth/signin"}>
@@ -66,6 +73,9 @@ const Navbar = () => {
                 </Link>
               </>
             )}
+            <div className="hidden md:block">
+              <Switcher />
+            </div>
 
             {/* Mobile Menu */}
             <div className="md:hidden">

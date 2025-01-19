@@ -1,8 +1,10 @@
+import logo1 from "@/assets/logo/logo.png";
 import { Button } from "@/components/ui/button";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { Table, TD, TH, TR } from "@ag-media/react-pdf-table";
 import {
   Document,
+  Image,
   Page,
   PDFDownloadLink,
   PDFViewer,
@@ -28,7 +30,9 @@ const InvoicePDF = ({ invoice = {}, user }) => (
           </Text>
         </View>
         <View style={[styles.spaceY, styles.textRight]}>
-          <Text style={styles.textBold}>Pharma Care</Text>
+          <Text style={styles.textBold}>
+            <Image src={logo1} /> Pharma Care
+          </Text>
           <Text>123, RK Guho Road</Text>
           <Text>Mymensingh, Bangladesh</Text>
         </View>

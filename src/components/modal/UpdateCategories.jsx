@@ -44,10 +44,10 @@ function UpdateCategories({ isOpen, setIsOpen, refetch, categoryId }) {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add New Category</DialogTitle>
+            <DialogTitle>Update Category</DialogTitle>
             <DialogDescription>
-              Enter details to create a new category. You can always edit or
-              delete it later.
+              Enter details to update a category. You can always edit or delete
+              it later.
             </DialogDescription>
           </DialogHeader>
           <Form>

@@ -70,9 +70,7 @@ function PaymentHistory() {
                       <TableCell>{medicine?.transactionId}</TableCell>
                       <TableCell>{medicine?.unitPrice}</TableCell>
                       <TableCell>{medicine?.quantity}</TableCell>
-                      <TableCell className="">
-                        {medicine.status === "requested" ? "Pending" : "Paid"}
-                      </TableCell>
+                      <TableCell className="">{medicine.status}</TableCell>
                     </TableRow>
                   );
                 })}

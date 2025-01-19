@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
   DribbbleIcon,
@@ -9,42 +7,133 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const footerLinks = [
+const footerSections = [
   {
-    title: "Overview",
-    href: "#",
+    title: "Product",
+    links: [
+      {
+        title: "Overview",
+        href: "#",
+      },
+      {
+        title: "Features",
+        href: "#",
+      },
+      {
+        title: "Solutions",
+        href: "#",
+      },
+      {
+        title: "Tutorials",
+        href: "#",
+      },
+      {
+        title: "Pricing",
+        href: "#",
+      },
+      {
+        title: "Releases",
+        href: "#",
+      },
+    ],
+  },
+
+  {
+    title: "Resources",
+    links: [
+      {
+        title: "Blog",
+        href: "#",
+      },
+      {
+        title: "Newsletter",
+        href: "#",
+      },
+      {
+        title: "Events",
+        href: "#",
+      },
+      {
+        title: "Help centre",
+        href: "#",
+      },
+      {
+        title: "Tutorials",
+        href: "#",
+      },
+      {
+        title: "Support",
+        href: "#",
+      },
+    ],
   },
   {
-    title: "Features",
-    href: "#",
+    title: "Social",
+    links: [
+      {
+        title: "Twitter",
+        href: "#",
+      },
+      {
+        title: "LinkedIn",
+        href: "#",
+      },
+      {
+        title: "Facebook",
+        href: "#",
+      },
+      {
+        title: "GitHub",
+        href: "#",
+      },
+      {
+        title: "AngelList",
+        href: "#",
+      },
+      {
+        title: "Dribbble",
+        href: "#",
+      },
+    ],
   },
   {
-    title: "Pricing",
-    href: "#",
-  },
-  {
-    title: "Careers",
-    href: "#",
-  },
-  {
-    title: "Help",
-    href: "#",
-  },
-  {
-    title: "Privacy",
-    href: "#",
+    title: "Legal",
+    links: [
+      {
+        title: "Terms",
+        href: "#",
+      },
+      {
+        title: "Privacy",
+        href: "#",
+      },
+      {
+        title: "Cookies",
+        href: "#",
+      },
+      {
+        title: "Licenses",
+        href: "#",
+      },
+      {
+        title: "Settings",
+        href: "#",
+      },
+      {
+        title: "Contact",
+        href: "#",
+      },
+    ],
   },
 ];
 
-const Footer = () => {
+const Footer01Page = () => {
   return (
     <div className="flex flex-col">
-      <Separator />
-      <div className="" />
       <footer>
-        <div className="container mx-auto px-4">
-          <div className="py-12 flex flex-col sm:flex-row items-start justify-between gap-x-8 gap-y-10">
-            <div>
+        <div className="container">
+          <div className="py-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-8 gap-y-10 px-4">
+            <div className="col-span-full xl:col-span-2">
               {/* Logo */}
               <svg
                 id="logo-7"
@@ -64,36 +153,37 @@ const Footer = () => {
                 />
               </svg>
 
-              <ul className="mt-6 flex items-center gap-4 flex-wrap">
-                {footerLinks.map(({ title, href }) => (
-                  <li key={title}>
-                    <Link
-                      href={href}
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      {title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-4 text-muted-foreground">
+                Design amazing digital experiences that create more happy in the
+                world.
+              </p>
             </div>
 
-            {/* Subscribe Newsletter */}
-            <div className="max-w-xs w-full">
-              <h6 className="font-semibold">Stay up to date</h6>
-              <form className="mt-6 flex items-center gap-2">
-                <Input type="email" placeholder="Enter your email" />
-                <Button>Subscribe</Button>
-              </form>
-            </div>
+            {footerSections.map(({ title, links }) => (
+              <div key={title}>
+                <h6 className="font-semibold">{title}</h6>
+                <ul className="mt-6 space-y-4">
+                  {links.map(({ title, href }) => (
+                    <li key={title}>
+                      <Link
+                        href={href}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        {title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
           <Separator />
-          <div className="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-x-2 gap-y-5 px-6 xl:px-0">
+          <div className="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-x-2 gap-y-5 px-4">
             {/* Copyright */}
             <span className="text-muted-foreground">
               &copy; {new Date().getFullYear()}{" "}
               <Link href="/" target="_blank">
-                Shadcn UI Blocks
+                Pharma Care
               </Link>
               . All rights reserved.
             </span>
@@ -119,4 +209,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer01Page;

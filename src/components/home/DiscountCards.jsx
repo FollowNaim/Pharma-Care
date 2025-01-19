@@ -27,7 +27,7 @@ function DiscountCards() {
       <div className="container">
         <Swiper
           grabCursor={true}
-          slidesPerView={3}
+          slidesPerView={1}
           breakpoints={{
             720: {
               slidesPerView: "2",

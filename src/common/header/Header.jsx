@@ -27,7 +27,7 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
 
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-6 md:gap-10">
             <NavMenu className="hidden md:block" />
             {user && (
               <>

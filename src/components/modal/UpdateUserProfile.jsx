@@ -8,6 +8,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { uploadToImgbb } from "@/utils/uploadImage";
+import axios from "axios";
 import { ImageUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -29,7 +30,7 @@ function UpdateUserProfile({ isOpen, setIsOpen }) {
     },
   });
   useEffect(() => {
-    axiosSecure.get(`/user/${user?.email}`).then((res) => {
+    axios.get(`/user/${user?.email}`).then((res) => {
       reset(res.data);
       setDbUser(res.data);
     });

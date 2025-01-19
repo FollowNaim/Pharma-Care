@@ -1,5 +1,6 @@
 import DashboardLayout from "@/layout/DashboardLayout";
 import MainLayout from "@/layout/MainLayout";
+import Error404 from "@/pages/404/Error404";
 import Cart from "@/pages/cart/Cart";
 import Checkout from "@/pages/checkout/Checkout";
 import Category from "@/pages/dashboard/admin/Category";
@@ -25,6 +26,7 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <Error404 />,
     children: [
       {
         path: "/",

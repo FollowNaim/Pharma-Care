@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
@@ -10,7 +11,7 @@ function useRole() {
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        const { data } = await axiosSecure.get(`/user-role/${user?.email}`);
+        const { data } = await axios.get(`/user-role/${user?.email}`);
         setRole(data.role);
       } catch (err) {
         console.log(err);

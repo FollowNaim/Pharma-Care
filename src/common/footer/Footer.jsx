@@ -61,18 +61,18 @@ const footerSections = [
     ],
   },
   {
-    title: "Legal",
+    title: "Top Sold",
     links: [
       {
-        title: "Terms",
+        title: "Thermometer",
         href: "#",
       },
       {
-        title: "Privacy",
+        title: "Hair Oil",
         href: "#",
       },
       {
-        title: "Cookies",
+        title: "Napa Extra",
         href: "#",
       },
     ],

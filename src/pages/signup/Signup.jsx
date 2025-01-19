@@ -72,7 +72,7 @@ function Signup() {
   };
   return (
     <div>
-      <div className="container px-4">
+      <div className="container pl-4">
         <div className="flex items-center justify-center">
           <div className="w-full h-full grid lg:grid-cols-2">
             <div className="max-w-xs m-auto w-full flex flex-col items-center py-10">

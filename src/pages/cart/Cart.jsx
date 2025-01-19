@@ -12,9 +12,11 @@ import { IoMdLock } from "react-icons/io";
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Cart() {
   const { user } = useAuth();
@@ -51,6 +53,27 @@ function Cart() {
     });
     refetch();
   };
+  const handleItemDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axiosSecure.delete(`/carts/${id}`);
+        refetch();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your item has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
   return (
     <div className="my-10">
       <div className="container px-4">
@@ -69,7 +92,8 @@ function Cart() {
                 <TableHead>Category</TableHead>
                 <TableHead>Price</TableHead>
                 <TableHead>Quantity</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="">Amount</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -104,8 +128,17 @@ function Cart() {
                       </button>
                     </div>
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="">
                     ${item.price * item.quantity}
+                  </TableCell>
+                  <TableCell className="text-right ml-auto">
+                    <div className="flex items-center justify-end ">
+                      <X
+                        onClick={() => handleItemDelete(item._id)}
+                        className="hover:text-red-700 cursor-pointer"
+                        size={20}
+                      />
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}

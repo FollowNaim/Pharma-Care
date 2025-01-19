@@ -1,5 +1,5 @@
-import freeShipping from "@/assets/features/free.png";
 import days from "@/assets/features/30-days.png";
+import freeShipping from "@/assets/features/free.png";
 import secure from "@/assets/features/secure.png";
 function Features() {
   return (
@@ -11,7 +11,7 @@ function Features() {
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, vel.
           </p>
         </div>
-        <div className="border-2 border-border border-dashed rounded-md flex flex-col md:flex-row items-center">
+        <div className="border-2 border-border border-dashed rounded-md flex flex-col md:flex-row">
           <div className="border-b-2 md:border-b-0 md:border-r-2 border-dashed flex-1 p-4">
             <img className="w-12 h-12" src={freeShipping} alt="" />
             <h4 className="text-lg font-bold mt-4">Free Shipping</h4>

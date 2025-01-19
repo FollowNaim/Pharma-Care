@@ -5,7 +5,7 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 
 function DashboardLayout() {
   return (
-    <div className="flex font-lato">
+    <div className="flex font-lato overflow-x-scroll">
       <ScrollRestoration />
       <Toaster />
       <SidebarProvider>

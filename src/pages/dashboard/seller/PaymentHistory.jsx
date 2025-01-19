@@ -57,23 +57,27 @@ function PaymentHistory() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {payments[0]?.orders.map((payment, i) => {
-              const medicine = payment.medicine;
-              return (
-                <TableRow key={i}>
-                  <TableCell className="font-medium">{i + 1}</TableCell>
-                  <TableCell>{medicine?.consumer?.name}</TableCell>
-                  <TableCell>{medicine?.consumer?.email}</TableCell>
-                  <TableCell>{medicine?.seller?.email}</TableCell>
-                  <TableCell>{medicine?.transactionId}</TableCell>
-                  <TableCell>{medicine?.unitPrice}</TableCell>
-                  <TableCell>{medicine?.quantity}</TableCell>
-                  <TableCell className="">
-                    {medicine.status === "requested" ? "Pending" : "Paid"}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {payments[0] ? (
+              <>
+                {payments[0]?.orders.map((payment, i) => {
+                  const medicine = payment.medicine;
+                  return (
+                    <TableRow key={i}>
+                      <TableCell className="font-medium">{i + 1}</TableCell>
+                      <TableCell>{medicine?.consumer?.name}</TableCell>
+                      <TableCell>{medicine?.consumer?.email}</TableCell>
+                      <TableCell>{medicine?.seller?.email}</TableCell>
+                      <TableCell>{medicine?.transactionId}</TableCell>
+                      <TableCell>{medicine?.unitPrice}</TableCell>
+                      <TableCell>{medicine?.quantity}</TableCell>
+                      <TableCell className="">
+                        {medicine.status === "requested" ? "Pending" : "Paid"}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </>
+            ) : null}
           </TableBody>
         </Table>
       </div>

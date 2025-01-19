@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
@@ -13,6 +14,7 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
@@ -32,18 +34,27 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
     }
   };
   const handleSubmit = async (e) => {
+    setIsDisabled(true);
     e.preventDefault();
     const card = elements.getElement(CardElement);
     if (!stripe || !elements || !card || !clientSecret) return;
-    const { error } = stripe.createPaymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
+      billing_details: {
+        name: user.displayName || "N/A",
+        email: user.email,
+      },
     });
     if (error) {
       console.log("err for creating payment method", error);
+      toast.error("Invalid card details. Please check and try again.");
+      setIsDisabled(false);
+      return;
     }
+
     try {
-      const data = await toast.promise(
+      const { paymentIntent, error: confirmError } = await toast.promise(
         stripe.confirmCardPayment(clientSecret, {
           payment_method: {
             card: card,
@@ -59,6 +70,12 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
           error: <b>Could not payment.</b>,
         }
       );
+      if (confirmError) {
+        console.log("error on confirm payment", confirmError);
+        toast.error("Payment could not be completed. Please try again.");
+        setIsDisabled(false);
+        return;
+      }
       const cartsObj = carts.map((cart) => {
         return {
           medicineId: cart.medicineId,
@@ -70,7 +87,7 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
         };
       });
       const medicine = {
-        transactionId: data.paymentIntent.payment_method,
+        transactionId: paymentIntent.payment_method,
         email: user.email,
         name: user.displayName,
         medicines: cartsObj,
@@ -83,6 +100,8 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
       refetch();
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsDisabled(false);
     }
   };
   const cardStyle = {
@@ -107,6 +126,7 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
   return (
     <div className="w-full">
       <form id="stripElements" onSubmit={handleSubmit}>
+        <Label>Enter your card details</Label>
         <CardElement className="" options={cardStyle} />
         <div className="flex items-center gap-4">
           <Button
@@ -115,7 +135,7 @@ function CheckoutForm({ totalPrice, totalQuantity, carts, refetch }) {
             size="lg"
             type="submit"
           >
-            Pay <IoMdLock /> ${totalPrice}
+            <IoMdLock /> Pay ${totalPrice}
           </Button>
           <Link to={"/shop/cart"}>
             <Button variant="outline" size="lg" className="mt-4" type="button">

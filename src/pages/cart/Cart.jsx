@@ -166,7 +166,7 @@ function Cart() {
               disabled={!carts.length}
               size="lg"
             >
-              Checkout <IoMdLock /> ${totalPrice}
+              <IoMdLock /> Checkout ${totalPrice}
             </Button>
           </div>
         </div>

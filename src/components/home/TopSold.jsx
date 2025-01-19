@@ -18,7 +18,7 @@ function TopSold() {
           style={{ backgroundImage: `url('${img1}')` }}
         >
           <div>
-            <h4 className="text-xl">Alor Vera</h4>
+            <h4 className="text-xl">Aloe Vera</h4>
             <h2 className="text-6xl font-bold py-3 font-montserrat">
               Hair Oil
             </h2>

@@ -39,9 +39,11 @@ function Shop() {
   const axiosSecure = useAxiosSecure();
   const [currentData, setCurrentData] = useState({});
   const { data: medicinesCount = {} } = useQuery({
-    queryKey: ["medicines-count"],
+    queryKey: ["medicines-count", category],
     queryFn: async () => {
-      const data = await axios.get("/medicines-count");
+      const data = await axios.get(
+        `/medicines-count?category=${category ? category : ""}`
+      );
       return data?.data;
     },
   });
@@ -57,7 +59,7 @@ function Shop() {
     },
   });
   const size = 10;
-  const totalMedicines = medicinesCount?.count;
+  const totalMedicines = medicinesCount?.count || 0;
   let totalPages = totalMedicines && Math.ceil(totalMedicines / size);
   if (searchText) {
     totalPages = Math.ceil(medicines.length / size);

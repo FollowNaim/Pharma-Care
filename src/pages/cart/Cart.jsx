@@ -108,7 +108,7 @@ function Cart() {
                     />
                   </TableCell>
                   <TableCell>{item.name}</TableCell>
-                  <TableCell>{"Tablet"}</TableCell>
+                  <TableCell>{item.category}</TableCell>
                   <TableCell>{item.price}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-4">

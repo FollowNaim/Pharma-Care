@@ -91,7 +91,10 @@ function Invoice() {
         <InvoicePDF user={user} invoice={invoice} />
       </PDFViewer>
       <div className="mt-8">
-        <PDFDownloadLink document={<InvoicePDF />} fileName="invoice.pdf">
+        <PDFDownloadLink
+          document={<InvoicePDF user={user} invoice={invoice} />}
+          fileName="invoice.pdf"
+        >
           <Button>Download PDF</Button>
         </PDFDownloadLink>
       </div>

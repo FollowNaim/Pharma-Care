@@ -2,6 +2,7 @@ import BestDeal from "@/components/home/BestDeal";
 import Category from "@/components/home/Category";
 import DiscountCards from "@/components/home/DiscountCards";
 import Features from "@/components/home/Features";
+import TopSold from "@/components/home/TopSold";
 import BannerSliders from "@/components/sliders/BannerSliders";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -33,6 +34,9 @@ function Home() {
           {categories.slice(0, 6)?.map((item) => (
             <Category item={item} key={item.category} />
           ))}
+        </div>
+        <div>
+          <TopSold />
         </div>
         <div>
           <Features />

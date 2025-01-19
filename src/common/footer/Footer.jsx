@@ -9,60 +9,36 @@ import { Link } from "react-router-dom";
 
 const footerSections = [
   {
-    title: "Product",
+    title: "Useful Links",
     links: [
       {
-        title: "Overview",
+        title: "Home",
         href: "#",
       },
       {
-        title: "Features",
+        title: "Shop",
         href: "#",
       },
       {
-        title: "Solutions",
-        href: "#",
-      },
-      {
-        title: "Tutorials",
-        href: "#",
-      },
-      {
-        title: "Pricing",
-        href: "#",
-      },
-      {
-        title: "Releases",
+        title: "Carts",
         href: "#",
       },
     ],
   },
 
   {
-    title: "Resources",
+    title: "Internal Links",
     links: [
       {
-        title: "Blog",
+        title: "SignIn",
         href: "#",
       },
       {
-        title: "Newsletter",
+        title: "Dashboard",
         href: "#",
       },
       {
-        title: "Events",
-        href: "#",
-      },
-      {
-        title: "Help centre",
-        href: "#",
-      },
-      {
-        title: "Tutorials",
-        href: "#",
-      },
-      {
-        title: "Support",
+        title: "Update Profile",
         href: "#",
       },
     ],
@@ -82,18 +58,6 @@ const footerSections = [
         title: "Facebook",
         href: "#",
       },
-      {
-        title: "GitHub",
-        href: "#",
-      },
-      {
-        title: "AngelList",
-        href: "#",
-      },
-      {
-        title: "Dribbble",
-        href: "#",
-      },
     ],
   },
   {
@@ -109,18 +73,6 @@ const footerSections = [
       },
       {
         title: "Cookies",
-        href: "#",
-      },
-      {
-        title: "Licenses",
-        href: "#",
-      },
-      {
-        title: "Settings",
-        href: "#",
-      },
-      {
-        title: "Contact",
         href: "#",
       },
     ],

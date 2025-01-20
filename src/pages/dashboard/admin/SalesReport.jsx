@@ -41,7 +41,6 @@ function SalesReport() {
       return data;
     },
   });
-  console.log(toDate);
   if (isLoading) return <Spinner />;
   return (
     <div>

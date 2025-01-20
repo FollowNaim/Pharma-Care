@@ -50,7 +50,6 @@ function UpdateUserProfile({ isOpen, setIsOpen }) {
       }
     );
     await axiosSecure.put(`/user/${user?.email}`, Newuser);
-    console.log(user);
     setIsOpen(false);
     reset();
   };

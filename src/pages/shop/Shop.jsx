@@ -65,7 +65,6 @@ function Shop() {
   if (searchText) {
     totalPages = Math.ceil(medicines.length / size);
   }
-  console.log(totalPages, totalMedicines, currentPage);
   const handleAddToCart = async (medicine) => {
     if (!user) return toast.error("You must login before add to cart");
     const { name, image, price, manufacturer, seller, category } = medicine;
@@ -88,7 +87,6 @@ function Shop() {
       success: <b>Added successfull!</b>,
       error: <b>Could not added.</b>,
     });
-    console.log(res);
   };
   return (
     <div className="mb-10">

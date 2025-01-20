@@ -40,9 +40,6 @@ function AuthProvider({ children }) {
     return signOut(auth);
   };
   useEffect(() => {
-    console.log(user);
-  }, [user]);
-  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         const { data: token } = await axios.post("/jwt", {

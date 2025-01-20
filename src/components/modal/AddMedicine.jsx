@@ -45,7 +45,6 @@ export function AddMedicine({ isOpen, setIsOpen, refetch }) {
       success: <b>Image uploaded successfull!</b>,
       error: <b>Could not upload.</b>,
     });
-    console.log(url);
     setImageUrl(url);
   };
   const onSubmit = async (data) => {

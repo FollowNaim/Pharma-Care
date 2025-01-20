@@ -56,7 +56,6 @@ function Signup() {
   };
   const onSubmit = async (data) => {
     const { email, name, photo, password, role } = data || {};
-    console.log({ name, email, photoURL: imageUrl, role: userRole });
     try {
       await toast.promise(signUp(email, password), {
         loading: "Creating account...",

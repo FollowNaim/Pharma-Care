@@ -91,7 +91,7 @@ Pharma Care is a comprehensive e-commerce platform designed to sell pharmacy pro
 
 ---
 
-## **User Dashboard Features**
+## **User Features**
 
 1. **Payment History**
 

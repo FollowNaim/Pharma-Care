@@ -23,11 +23,14 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import UpdateUserProfile from "../modal/UpdateUserProfile";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const { user, logOut } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -94,7 +97,7 @@ export function NavUser() {
                   Dashboard
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setIsOpen(!isOpen)}>
                 <UserPen />
                 Update Profile
               </DropdownMenuItem>
@@ -107,6 +110,7 @@ export function NavUser() {
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
+      <UpdateUserProfile isOpen={isOpen} setIsOpen={setIsOpen} />
     </SidebarMenu>
   );
 }

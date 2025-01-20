@@ -19,21 +19,24 @@ function Features() {
             <img className="w-12 h-12" src={freeShipping} alt="" />
             <h4 className="text-lg font-bold mt-4">Free Shipping</h4>
             <p className="text-muted-foreground mt-2">
-              Sed perspicia unde omnis iste nat error voluptate accus
+              Get fast, free delivery on all your orders. Your health
+              essentials, right at your door.
             </p>
           </div>
           <div className="border-b-2 md:border-b-0 md:border-r-2 border-dashed flex-1 p-4">
             <img className="w-12 h-12" src={days} alt="" />
             <h4 className="text-lg font-bold mt-4">30 Days Money Back</h4>
             <p className="text-muted-foreground mt-2">
-              Sed perspicia unde omnis iste nat error voluptate accus
+              Return products within 30 days, hassle-free. We prioritize your
+              satisfaction always.
             </p>
           </div>
           <div className="border-r flex-1 p-4">
             <img className="w-12 h-12" src={secure} alt="" />
             <h4 className="text-lg font-bold mt-4">100% Secure</h4>
             <p className="text-muted-foreground mt-2">
-              Sed perspicia unde omnis iste nat error voluptate accus
+              Shop with confidence and data protection. Your safety is our top
+              priority.
             </p>
           </div>
         </div>

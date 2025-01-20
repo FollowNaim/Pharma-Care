@@ -46,6 +46,7 @@ function AuthProvider({ children }) {
           email: currentUser.email,
         });
         localStorage.setItem("token", token);
+        setLoading(false);
       }
       setUser(currentUser);
       setLoading(false);
@@ -55,6 +56,7 @@ function AuthProvider({ children }) {
   const authInfo = {
     user,
     loading,
+    setLoading,
     signIn,
     signUp,
     signinGoogle,

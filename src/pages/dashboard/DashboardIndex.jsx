@@ -7,7 +7,8 @@ function DashboardIndex() {
   const navigate = useNavigate();
   const { role, roleLoading } = useRole();
   const { user, loading } = useAuth();
-  if (loading || roleLoading) return <Spinner />;
+  console.log(role, loading, "role", roleLoading);
+  if (loading) return <Spinner />;
   if (!user) return navigate("/auth/signin");
   if (role === "admin") return navigate("/dashboard/admin");
   if (role === "seller") return navigate("/dashboard/seller");

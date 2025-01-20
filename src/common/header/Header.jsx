@@ -1,6 +1,7 @@
+import logo1 from "@/assets/logo/logo.png";
+import Switcher from "@/components/language/Switcher";
 import UpdateUserProfile from "@/components/modal/UpdateUserProfile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import logo1 from "@/assets/logo/logo.png";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,7 +16,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavigationSheet } from "../../components/header/NavigationSheet";
 import { NavMenu } from "../../components/header/NavMenu";
-import Switcher from "@/components/language/Switcher";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -41,6 +41,7 @@ const Navbar = () => {
                   <DropdownMenuTrigger>
                     <Avatar className="rounded-full object-cover">
                       <AvatarImage
+                        className="object-cover bg-cover"
                         referrerPolicy="no-referrer"
                         src={user?.photoURL}
                         alt={user?.name}
@@ -65,7 +66,9 @@ const Navbar = () => {
                 </DropdownMenu>
               </>
             )}
-
+            <div className="hidden md:block">
+              <Switcher />
+            </div>
             {!user && (
               <>
                 <Link to={"/auth/signin"}>
@@ -73,9 +76,6 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            <div className="hidden md:block">
-              <Switcher />
-            </div>
 
             {/* Mobile Menu */}
             <div className="md:hidden">

@@ -59,7 +59,7 @@ function PaymentHistory() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {payments[0] ? (
+            {payments[0] && (
               <>
                 {payments[0]?.orders.map((payment, i) => {
                   const medicine = payment.medicine;
@@ -77,7 +77,7 @@ function PaymentHistory() {
                   );
                 })}
               </>
-            ) : null}
+            )}
           </TableBody>
         </Table>
       </div>

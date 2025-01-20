@@ -22,7 +22,7 @@ function UpdateUserProfile({ isOpen, setIsOpen }) {
   const [dbUser, setDbUser] = useState(null);
   const profileRef = useRef(null);
   const [uploadedImage, setUploadedImage] = useState(null);
-  const { user, updateUserProfile: updateDP } = useAuth();
+  const { user, updateUserProfile: updateDP, setLoading } = useAuth();
   const { register, reset, handleSubmit } = useForm({
     defaultValues: {
       name: "",
@@ -50,6 +50,7 @@ function UpdateUserProfile({ isOpen, setIsOpen }) {
       }
     );
     await axiosSecure.put(`/user/${user?.email}`, Newuser);
+    setLoading(false);
     setIsOpen(false);
     reset();
   };

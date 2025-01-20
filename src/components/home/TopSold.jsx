@@ -44,7 +44,11 @@ function TopSold() {
           >
             <h4 className="text-xl">Cosmetics</h4>
             <h2 className="text-3xl font-bold py-2">Body Lotion</h2>
-            <p className="mt-4 border-b-2 w-fit border-blue-600">Shop Now +</p>
+            <Link to={"/shop"}>
+              <p className="mt-4 border-b-2 w-fit border-blue-600 cursor-pointer">
+                Shop Now +
+              </p>
+            </Link>
           </div>
           <div
             className="bg-no-repeat bg-cover p-4 flex flex-col justify-center"
@@ -52,7 +56,11 @@ function TopSold() {
           >
             <h4 className="text-xl">Senitizer</h4>
             <h2 className="text-3xl font-bold py-2">Temperature</h2>
-            <p className="mt-4 border-b-2 w-fit border-blue-600">Shop Now +</p>
+            <Link to={"/shop"}>
+              <p className="mt-4 border-b-2 w-fit border-blue-600 cursor-pointer">
+                Shop Now +
+              </p>
+            </Link>
           </div>
         </div>
       </div>

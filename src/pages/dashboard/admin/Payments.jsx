@@ -54,7 +54,7 @@ function Payments() {
       <Seo title={"Manage Payments | Pharma Care"} />
       <div className="container">
         <Table>
-          <TableCaption>A list of your recent payments.</TableCaption>
+          <TableCaption>A list of all payments.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ID</TableHead>

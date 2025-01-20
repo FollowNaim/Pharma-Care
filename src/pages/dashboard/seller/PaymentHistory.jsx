@@ -44,7 +44,7 @@ function PaymentHistory() {
           </DownloadTableExcel>
         </div>
         <Table ref={tableRef}>
-          <TableCaption>A list of your recent payments.</TableCaption>
+          <TableCaption>A list of all payments.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="">ID</TableHead>

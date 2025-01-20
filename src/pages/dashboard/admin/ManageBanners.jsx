@@ -59,7 +59,7 @@ function ManageBanners() {
           <Button>Add new banner</Button>
         </div>
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableCaption>A list of all Banners.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="">ID</TableHead>

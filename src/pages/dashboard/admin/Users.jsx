@@ -46,7 +46,7 @@ function Users() {
       <Seo title={"Manage Users | Pharma Care"} />
       <div className="container">
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableCaption>A list of all users.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">ID</TableHead>

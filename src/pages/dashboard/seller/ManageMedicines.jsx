@@ -47,7 +47,7 @@ function ManageMedicines() {
           </Button>
         </div>
         <Table>
-          <TableCaption>A list of your recent payments.</TableCaption>
+          <TableCaption>A list of all medicines</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="">ID</TableHead>

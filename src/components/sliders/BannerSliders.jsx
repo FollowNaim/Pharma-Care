@@ -22,7 +22,11 @@ function BannerSliders() {
   });
   if (isLoading) return <Spinner />;
   return (
-    <div id="bannerslider" style={{ backgroundImage: `url('${sliderbg}')` }}>
+    <div
+      id="bannerslider"
+      className="bg-no-repeat bg-cover bg-right-top"
+      style={{ backgroundImage: `url('${sliderbg}')` }}
+    >
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

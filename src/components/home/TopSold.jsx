@@ -1,8 +1,8 @@
 import img1 from "@/assets/top-sold/b-01.jpg";
 import img2 from "@/assets/top-sold/b-02.jpg";
 import img3 from "@/assets/top-sold/b-03.jpg";
-import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 function TopSold() {
   return (
     <div className="mt-20 mb-10 container px-4  ">
@@ -17,7 +17,7 @@ function TopSold() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <div
-          className="col-span-12 md:col-span-8 py-32 bg-no-repeat bg-cover px-8"
+          className="col-span-12 md:col-span-8 py-32 bg-no-repeat bg-cover px-4 md:px-8"
           style={{ backgroundImage: `url('${img1}')` }}
         >
           <div>

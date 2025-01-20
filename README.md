@@ -4,7 +4,7 @@ Pharma Care is a comprehensive e-commerce platform designed to sell pharmacy pro
 
 ## **Showcasing Excellence in Healthcare Solutions** - Explore. Select. Simplify.
 
-<img src='https://i.ibb.co.com/KXMbHMt/pharmacare.jpg'/>
+<img src='https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-FollowNaim/blob/master/pharmacare.jpg?raw=true'/>
 
 ## **Live Website**
 

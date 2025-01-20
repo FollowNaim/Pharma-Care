@@ -2,6 +2,10 @@
 
 Pharma Care is a comprehensive e-commerce platform designed to sell pharmacy products and medicines with a user-friendly interface for buyers, sellers, and administrators. This project offers an extensive set of features, including dashboards for users, sellers, and admins, robust payment management, and advanced reporting tools.
 
+## **Showcasing Excellence in Healthcare Solutions** - Explore. Select. Simplify.
+
+<img src='https://i.ibb.co.com/KXMbHMt/pharmacare.jpg'/>
+
 ## **Live Website**
 
 - **URL**: [Pharma Care Website](https://pharmacares.vercel.app)
@@ -10,6 +14,11 @@ Pharma Care is a comprehensive e-commerce platform designed to sell pharmacy pro
 
 - **Email**: admin@pharmacare.com
 - **Password**: admin123
+
+## **Seller Login Details**
+
+- **Email**: seller@pharmacare.com
+- **Password**: seller123
 
 ---
 

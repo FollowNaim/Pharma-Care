@@ -21,26 +21,26 @@ import { cn } from "@/lib/utils";
 
 const frameworks = [
   {
-    value: "english",
-    label: "English",
+    value: "en",
+    label: "EN",
   },
   {
-    value: "bangla",
-    label: "Bangla",
+    value: "bn",
+    label: "BN",
   },
   {
-    value: "arabic",
-    label: "Arabic",
+    value: "ar",
+    label: "AR",
   },
   {
-    value: "chinese",
-    label: "Chinese",
+    value: "cn",
+    label: "CN",
   },
 ];
 
 function Switcher() {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("english");
+  const [value, setValue] = React.useState("en");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -49,7 +49,7 @@ function Switcher() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[100px] justify-between"
+          className="w-[80px] justify-between"
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
